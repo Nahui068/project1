@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/admin-header.jsp" %>
+
+<script>
+
+//이전 버튼 이벤트
+
+function fn_prev(page, range, rangeSize) {
+
+		var page = ((range - 2) * rangeSize) + 1;
+		var range = range - 1;
+
+		
+		var url =  "${pageContext.request.contextPath}/board_select";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+
+		location.href = url;
+	}
+
+
+//페이지 번호 클릭
+
+function fn_pagination(page, range, rangeSize, searchType, keyword) {
+
+		var url = "${pageContext.request.contextPath}/board_select";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+
+		location.href = url;	
+
+	}
+
+//다음 버튼 이벤트
+
+	function fn_next(page, range, rangeSize) {
+
+		var page = parseInt((range * rangeSize)) + 1;
+		var range = parseInt(range) + 1;
+
+		var url =  "${pageContext.request.contextPath}/board_select";
+
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+
+		location.href = url;
+
+	}
+
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>관리자-게시판</title>
+	
+</head>
+<body>
+
+	<h1>공지사항 목록</h1>
+	
+</body>
+</html>

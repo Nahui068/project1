@@ -1,0 +1,22 @@
+package com.mycompany.project1;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mycompany.project1.bean.BoardBean;
+
+@Controller
+public class AdminController {
+
+	@RequestMapping(value="/admin_board")
+	public String adminPage(BoardBean boardDTO, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page
+			,@RequestParam(required = false, defaultValue = "1") int range) throws Exception{
+		
+		
+		return "admin_board";
+	}
+	
+}
