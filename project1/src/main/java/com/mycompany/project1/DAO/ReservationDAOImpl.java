@@ -48,6 +48,13 @@ public class ReservationDAOImpl implements ReservationDAO{
 		 
 	}
 
+	// 예약 삭제
+	@Override
+	public void deleteReservation(ReservationBean reservation) {
+		sqlSession.delete("reservation.reservationDelete",reservation);
+		
+	}
+
 
 
 

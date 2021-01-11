@@ -14,4 +14,7 @@ public interface ReservationService {
 	// 예약 내용 가져오기
 	public List reservation_select(String r1, String r2) throws Exception;
 	
+	// 예약 내용 삭제하기
+	public void reservation_delete(ReservationBean reservation) throws Exception;
+	
 }

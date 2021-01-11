@@ -18,5 +18,10 @@
 		select * from reservation where r1=#{r1} and r2=#{r2};
 	</select>
 	
+	<!-- 예약 내용 삭제 -->
+	<delete id="reservationDelete" parameterType="reservation">
+		delete from reservation where id=#{id} and title=#{title} and res_date=#{res_date} and start_time=#{start_time}
+	</delete>
+	
 	
 </mapper>

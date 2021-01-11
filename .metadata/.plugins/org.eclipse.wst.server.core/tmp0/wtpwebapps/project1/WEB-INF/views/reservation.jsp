@@ -38,6 +38,25 @@
 	  		return date+" "+time;
 	  	
 	  }
+
+	// 날짜 포맷 yyy-mm-dd
+	  function formatDate2(date) { 
+		  	var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear(); 
+		  	if (month.length < 2) month = '0' + month; if (day.length < 2) day = '0' + day; 
+		  	return [year,month,day].join('-'); // 날짜
+		    	
+	}
+
+	// 시간 포맷 HH:mm
+	  function formatClock(date) { 
+	  	var d = new Date(date), hour = d.getHours().toString(), minute = d.getMinutes().toString(); 
+	 
+	  	if(hour.length < 2) hour = '0' + hour; if(minute.length < 2) minute = minute + '0';
+	  	
+	  	return [hour,minute].join(':'); // 시간
+	  		
+	  	
+	  }
 	  	
 	document.addEventListener('DOMContentLoaded', function() {
 		
@@ -110,20 +129,10 @@
 		        	$('#res_modal .modal-body .res_title').text(info.event.title);
 		        	$('#res_modal .modal-body .res_date').text(formatDate(info.event.start) + ' ~ ' + formatDate(info.event.end));
 		        	
-					
-					/* var id = info.event.id;
-					var r1 = info.event.r1;
-					var r2 = info.event.r2;
-					var title = info.event.title;
-					var res_date = info.event.start.substring(0,10);
-					$.ajax({
-			    		type : "post", //송신 데이터타입
-			    		url : "reservation_detail",
-			    		data : {id:id, r1:r1, r2:r2, title:title, res_date:res_date}, // day_detail.mw에 넘길 데이터
-			    		success : function(data){
-			    			$("#content").html(data);
-			    		}
-			    	}); */
+		        	$('#res_modal .modal-body #id').val(info.event.id);
+		        	$('#res_modal .modal-body #title').val(info.event.title);
+		        	$('#res_modal .modal-body #res_date').val(formatDate2(info.event.start));
+		        	$('#res_modal .modal-body #start_time').val(formatClock(info.event.start));
 				 }
 	
 			});
@@ -348,23 +357,31 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+       <form action="/project1/schedule_delete">
       <div class="modal-body" id="content">
-       <table>
-       		<tr>
-       			<td>예약 Id</td><td class="res_id"></td>
-       		</tr>
-      		<tr>
-      			<td>예약명 </td><td class="res_title"></td>
-      		</tr> 
-      		<tr>
-      			<td>예약일 </td><td class="res_date"></td>
-      		</tr>
-       </table>
-      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+     
+	       <table>
+	       		<tr>
+	       			<td>예약 Id</td><td class="res_id" name="id"></td>
+	       			<input type="hidden" id="id" name="id">
+	       		</tr>	      		
+	       		<tr>
+	      			<td>예약명 </td><td class="res_title" name="title"></td>
+	      			<input type="hidden" id="title" name="title">
+	      		</tr> 
+	      		<tr>
+	      			<td>예약일 </td><td class="res_date" name="res_date"></td>
+	      			<input type="hidden" id="res_date" name="res_date">
+	      			<input type="hidden" id="start_time" name="start_time">
+	      		</tr>
+	       </table>
+	      
+	      </div>
+	      <div class="modal-footer">
+	      	<input type="submit" class="btn btn-primary" id="res_submit" name="res_submit" value="삭제">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+      </form>
     </div>
   </div>
 </div> 

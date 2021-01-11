@@ -37,6 +37,14 @@ public class ReservationServiceImpl implements ReservationService{
 		
 		return rd.selectReservation(room1,room2);
 	}
+
+	// 예약 내용 삭제하기
+	@Override
+	public void reservation_delete(ReservationBean reservation) throws Exception {
+		
+		rd.deleteReservation(reservation);
+		
+	}
 	
 	
 

@@ -39,7 +39,7 @@
         <a class="nav-link" href="/project1/admin_board">게시글 관리</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">직원관리</a>
+        <a class="nav-link" href="/project1/memberList">직원관리</a>
       </li>
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>

@@ -15,6 +15,8 @@ public interface ReservationDAO {
 	
 	//예약 내용 가져오기
 	public List<ReservationBean> selectReservation(String room1, String room2);
-	
+
+	// 예약 내용 삭제하기
+	public void deleteReservation(ReservationBean reservation);
 	
 }

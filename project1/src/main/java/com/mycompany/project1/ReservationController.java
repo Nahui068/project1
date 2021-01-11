@@ -57,6 +57,17 @@ public class ReservationController {
 		return "reservation";
 	}
 	
+	// 예약 삭제하기
+	@RequestMapping("/schedule_delete")
+	public String deleteReservation(ReservationBean reservation) {
+		System.out.println(reservation.getId());
+		System.out.println(reservation.getTitle());
+		System.out.println(reservation.getRes_date());
+		System.out.println(reservation.getStart_time());
+		
+		return "reservation";
+	}
+	
 	
 	
 }

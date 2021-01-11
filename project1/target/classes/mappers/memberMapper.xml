@@ -3,19 +3,34 @@
 
 <mapper namespace="member">
 
-	<!-- 회원찾기 -->
+	<!-- 회원찾기(로그인) -->
 	<select id="memberSelect" resultType="int" parameterType="String">
 		select count(*) from member where id=#{id} and pw=#{pw}
 	</select>
 	
 	<!-- 회원등록 -->
-	<insert id = "memberInsert" parameterType="reservation">
-		insert into member values(#{name},#{age},#{gender})
+	<insert id = "memberInsert" parameterType="member">
+		insert into member values(#{id},#{name},#{pw})
 	</insert>
 	
+	<!-- 회원정보 가져오기 -->
+	<select id="memberInfo" resultType="member" parameterType="String">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
 	<!-- 회원정보 수정 체크 -->
-	<!-- <update id="memberUpdate" parameterType="String ">
-		
-	</update> -->
+ 	<update id="memberUpdate" parameterType="member">
+		update member set pw=#{pw} where id=#{id};
+	</update>
+	
+	<!-- 모든 회원 불러오기 -->
+	<select id="memberList" resultType="member">
+		select * from member limit #{startList}, #{listSize};
+	</select> 
+	
+	<!-- 회원 수 -->
+	<select id="memberCount" resultType="int">
+		select count(*) from member;
+	</select>
 
 </mapper>
