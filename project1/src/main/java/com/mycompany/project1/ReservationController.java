@@ -43,6 +43,7 @@ public class ReservationController {
 	// 예약저장
 	@RequestMapping("/res_submit")
 	public void insertReservation(ReservationBean reservation,HttpServletResponse response) throws Exception {
+		
 		service.reservation_insert(reservation);
 		
 	}

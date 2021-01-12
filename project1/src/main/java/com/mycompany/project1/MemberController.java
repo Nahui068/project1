@@ -1,5 +1,6 @@
 package com.mycompany.project1;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.http.HttpResponse;
 import java.util.List;
@@ -44,6 +45,7 @@ public class MemberController {
 		service.member_select(memberDTO, response);
 	}
 	
+	 
 	//로그아웃
 	@RequestMapping(value="/logout")
 	public void logout(HttpSession session, HttpServletResponse response) throws Exception {
@@ -54,7 +56,8 @@ public class MemberController {
 	
 	// 로그인 후 메인화면
 	@RequestMapping(value="/main")
-	public String main() {
+	public String main() throws IOException {
+	
 		return "main";
 	}
 	

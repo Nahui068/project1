@@ -56,14 +56,11 @@
       </c:if>
     </ul>
  <c:if test="${sessionScope.id !=null}">
-    	 ${sessionScope.id}&nbsp;&nbsp;
-    	 <a href="/project1/updateCheck_form">정보수정</a>&nbsp;&nbsp;
-    	 <a href="/project1/logout">로그아웃</a>
-    	<!--  <input type="button" value="로그아웃" onclick="location.href='/project1/logout'"> -->
-<%--     	 <c:if test="${sessionScope.id == 'admin' }">
-    	 		<input type="button" value="글등록" onClick="location.href='/project1/board_form'">
-    	 </c:if> --%>
-    </c:if>
+    ${sessionScope.id}&nbsp;&nbsp;
+    <a href="/project1/updateCheck_form">정보수정</a>&nbsp;&nbsp;
+    <a href="/project1/logout">로그아웃</a>
+
+   </c:if>
  </div>
 
 </nav>
