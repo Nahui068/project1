@@ -40,9 +40,15 @@ public class ReservationServiceImpl implements ReservationService{
 
 	// 예약 내용 삭제하기
 	@Override
-	public void reservation_delete(ReservationBean reservation) throws Exception {
+	public void reservation_delete(ReservationBean reservation,HttpServletResponse response) throws Exception {
 		
 		rd.deleteReservation(reservation);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('삭제되었습니다.')");
+		out.println("location.href = document.referrer");
+		out.println("</script>");
 		
 	}
 	

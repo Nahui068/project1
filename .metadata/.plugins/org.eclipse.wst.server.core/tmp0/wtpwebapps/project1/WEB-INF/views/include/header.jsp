@@ -39,19 +39,19 @@
       <li class="nav-item">
         <a class="nav-link" href="/project1/reservation">예약신청</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">About</a>
-      </li>
+      </li> -->
       <c:if test="${sessionScope.id == 'admin'}">
 	     <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=# role="button" aria-haspopup="true" aria-expanded="false">관리자</a>
 	        <div class="dropdown-menu">
 	          <a class="dropdown-item" href="/project1/admin_board">게시글 관리</a> <!-- 게시글 등록 및 목록(수정,삭제) -->
-	          <a class="dropdown-item" href="#">직원관리</a> <!-- 회원 등록, 수정, 삭제 -->
-	          <a class="dropdown-item" href="#">Something else here</a>
+	          <a class="dropdown-item" href="/project1/memberList">직원관리</a> <!-- 회원 등록, 수정, 삭제 -->
+	          <!-- <a class="dropdown-item" href="#">Something else here</a>
 	          <div class="dropdown-divider"></div>
 	          <a class="dropdown-item" href="#">Separated link</a>
-	        </div>
+	        </div> -->
 	      </li>
       </c:if>
     </ul>

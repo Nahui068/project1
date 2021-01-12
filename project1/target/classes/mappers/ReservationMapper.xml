@@ -20,7 +20,7 @@
 	
 	<!-- 예약 내용 삭제 -->
 	<delete id="reservationDelete" parameterType="reservation">
-		delete from reservation where id=#{id} and title=#{title} and res_date=#{res_date} and start_time=#{start_time}
+		delete from reservation where id=#{id} and r2=#{r2} and title=#{title} and res_date=#{res_date} and start_time=#{start_time}
 	</delete>
 	
 	

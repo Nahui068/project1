@@ -1,10 +1,12 @@
 package com.mycompany.project1;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,13 +61,20 @@ public class ReservationController {
 	
 	// 예약 삭제하기
 	@RequestMapping("/schedule_delete")
-	public String deleteReservation(ReservationBean reservation) {
-		System.out.println(reservation.getId());
-		System.out.println(reservation.getTitle());
-		System.out.println(reservation.getRes_date());
-		System.out.println(reservation.getStart_time());
+	public void deleteReservation(ReservationBean reservation,HttpSession session,HttpServletResponse response) throws Exception {
+		String session_id = (String) session.getAttribute("id");
+		String r_id = reservation.getId();
 		
-		return "reservation";
+		if(session_id.equals(r_id)) {
+			service.reservation_delete(reservation, response);
+		}else {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('삭제할 권한이 없습니다.')");
+			out.println("window.location=history.back()");
+			out.println("</script>");
+		}
 	}
 	
 	
