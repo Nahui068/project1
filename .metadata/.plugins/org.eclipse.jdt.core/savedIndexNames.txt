@@ -28,7 +28,6 @@ INDEX VERSION 1.131+C:\Users\user\Desktop\spring\.metadata\.plugins\org.eclipse.
 3492499870.index
 283918679.index
 2965949455.index
-3745153342.index
 3815508686.index
 3132084703.index
 53518676.index
