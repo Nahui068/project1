@@ -17,4 +17,8 @@ public interface ReservationService {
 	// 예약 내용 삭제하기
 	public void reservation_delete(ReservationBean reservation,HttpServletResponse response) throws Exception;
 	
+	// 예약 수정하기
+	public void reservation_update(ReservationBean reservation, HttpServletResponse response) throws Exception;
+	
+	
 }

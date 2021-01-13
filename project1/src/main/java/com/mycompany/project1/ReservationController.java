@@ -78,6 +78,28 @@ public class ReservationController {
 		}
 	}
 	
+	// 예약 내용 수정하기
+	@RequestMapping("/schedule_update")
+	public void updateReservation(ReservationBean reservation, Model model, HttpSession session,HttpServletResponse response) throws Exception {
+		
+		String session_id = (String) session.getAttribute("id");
+		String r_id = reservation.getId();
+		System.out.println(r_id);
+		System.out.println(reservation.getStart_time());
+		
+		if(session_id.equals(r_id)) {
+			service.reservation_update(reservation, response);
+		}else {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('수정할 권한이 없습니다.')");
+			out.println("window.location=history.back()");
+			out.println("</script>");
+		}
+	
+	}
+	
 	
 	
 }

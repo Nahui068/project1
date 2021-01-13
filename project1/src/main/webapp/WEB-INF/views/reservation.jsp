@@ -24,6 +24,9 @@
 	<script src='resources/packages/list/main.js'></script>
 	<script src='resources/packages/moment/main.js'></script>
 	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="resources/css/style-css.css" rel="stylesheet" type="text/css">
   	
@@ -114,13 +117,12 @@
 				    	$('#res_date').val(data);
 				    }
 				});
-	
 			    	$("#start_time").val(start_time);
 			    	$("#end_time").val(end_time);
-			    	modal.style.display = "block";   
-	     
+			    	  
+
+			    	modal.style.display = "block";
 		        },
-		        timeFormat: 'H(:mm)',
 		        events : dataset,
 		        eventClick:function(info){
 		        	//info.jsEvent.preventDefault();
@@ -135,6 +137,8 @@
 		        	$('#res_modal .modal-body #title').val(info.event.title);
 		        	$('#res_modal .modal-body #res_date').val(formatDate2(info.event.start));
 		        	$('#res_modal .modal-body #start_time').val(formatClock(info.event.start));
+		        	$('#res_modal .modal-body #end_time').val(formatClock(info.event.end));
+		        	$('#res_modal .modal-body #color').val(info.event.color);
 				 }
 	
 			});
@@ -160,11 +164,13 @@
 	<script>
 		function roomChange(e){
 			var studio = ['1006호 A','1006호 B','1707호 C'];
-			var meeting = ['A','B','C']
+			var meeting = ['1005호 A','424호 B',];
+			var cafeteria = ['1006호','1707호'];
 			var target = document.getElementsByName('room2')[0];
 			
 			if(e.value == "studio") var d = studio;
 			else if(e.value == "meeting") var d = meeting;
+			else if(e.value == "cafeteria") var d = cafeteria;
 
 			target.options.length = 0;
 	
@@ -176,13 +182,15 @@
 					target.appendChild(opt);
 			}	
 		}
-		    function roomChange_modal(e){
+		function roomChange_modal(e){
 			var studio = ['1006호 A','1006호 B','1707호 C'];
-			var meeting = ['A','B','C']
+			var meeting = ['1005호 A','424호 B']
+			var cafeteria = ['1006호','1707호'];
 			var target = document.getElementsByName('r2')[0];
 
 			if(e.value == "studio") var d = studio;
 			else if(e.value == "meeting") var d = meeting;
+			else if(e.value == "cafeteria") var d = cafeteria;
 			
 			target.options.length = 0;
 
@@ -225,6 +233,20 @@
 		});
 		
 	</script>
+	<script>
+    $(document).ready(function(){
+    	$('.timepicker').timepicker({
+    	    timeFormat: 'H:mm',
+    	    interval: 30,
+    	    maxTime: '23:00',   
+    	    dynamic: false,
+    	    dropdown: true,
+    	    scrollbar: true,
+    	    zindex:99999
+    	});
+    });
+        
+	</script>
 	
 	<style>
 		#calendar{
@@ -240,6 +262,7 @@
 </head>
 <body>
 
+
 <h1 style="position:absolute; top:40%; left:45%;">예약신청</h1>
 
 	
@@ -249,6 +272,7 @@
 			<option>예약구분</option>
 			<option value="studio">스튜디오</option>
 			<option value="meeting">회의실</option>
+			<option value="cafeteria">카페테리아</option>
 		</select>
 	</span>
 	
@@ -270,7 +294,6 @@
 </span>
 
 <div id='calendar'></div>	
-
 
 <!-- 예약 모달창 -->
 <div id="myModal" class="modal">
@@ -294,8 +317,9 @@
 				<td>
 				<select class="form-control" name ="r1" id="exampleSelect1" onchange="roomChange_modal(this)">
 					<option value=""> 예약구분</option>
-					<option value="studio" <c:if test="${room1 eq 'studio'}"> selected </c:if> >스튜디오</option>
-					<option value="meeting"<c:if test="${room1 eq 'meeting'}"> selected </c:if> >회의실</option>
+					<option value="studio" <c:if test="${room1 eq 'studio'}"> selected </c:if>>스튜디오</option>
+					<option value="meeting"<c:if test="${room1 eq 'meeting'}"> selected </c:if>>회의실</option>
+					<option value="cafeteria"<c:if test="${room1 eq 'cafeteria'}"> selected </c:if>>카페테리아</option>
 				</select>
 				</td>
 				<td>
@@ -307,11 +331,13 @@
 						<option value="1707호 C" <c:if test="${room2 eq '1707호 C'}">selected</c:if>>1707호 C</option>
 					</c:if>
 					<c:if test="${room1 eq 'meeting' && !empty room2}">
-						<option value="A" <c:if test="${room2 eq 'A'}">selected</c:if>>A</option>
-						<option value="B" <c:if test="${room2 eq 'B'}">selected</c:if>>B</option>
-						<option value="C" <c:if test="${room2 eq 'C'}">selected</c:if>>C</option>
-						
-					</c:if> 
+						<option value="1005호 A" <c:if test="${room2 eq '1005호 A'}">selected</c:if>>1005호 A</option>
+						<option value="424호 B" <c:if test="${room2 eq '424호 B'}">selected</c:if>>424호 B</option>	
+					</c:if>
+					<c:if test="${room1 eq 'cafeteria' && !empty room2}">
+						<option value="1006호" <c:if test="${room2 eq '1006호'}">selected</c:if>>1006호</option>
+						<option value="1707호" <c:if test="${room2 eq '1707호'}">selected</c:if>>1707호</option>	
+					</c:if>					 
 				</select>
 				</td>
 			</tr>
@@ -322,20 +348,21 @@
 				<td style="text-align:center">날짜</td><td><input type="date" name="res_date" id="res_date"></td>
 			</tr>        
 			<tr>
-				<td style="text-align:center">예약시간</td><td><input type="time" name="start_time" id="start_time"> ~ <input type="time" name="end_time" id="end_time">    </td>
+				<td style="text-align:center">예약시간</td><td><input type="text" class="timepicker" name="start_time" id="start_time"></td><td><input type="text" class="timepicker" name="end_time" id="end_time"></td>
 			</tr>
 			<tr>
 				<td style="text-align:center">색상</td>
 				<td>
-					<select class="custom-select" name="color" id="color">
-						<!-- <select class="sc_color" name="sc_color" id="sc_color"> -->
+					<input type="color" name="color" id="color">
+					<!-- <select class="custom-select" name="color" id="color">
+						<select class="sc_color" name="sc_color" id="sc_color">
 						<option value="">색상
 						<option value="#FFEB5A" style="color:#FFEB5A;"> 노랑색</option>
 						<option value="#C45FDD" style="color:#C45FDD;"> 보라색</option>
 						<option value="#5AD18F" style="color:#5AD18F;"> 초록색</option>
 						<option value="#5CEEE6" style="color:#5CEEE6;"> 민트색</option>
 					</select>
-		
+		 -->
 				</td>
 			</tr>
         </table>
@@ -349,7 +376,7 @@
   </div>
 </div>
 
-<!-- 예약 상세내용 모달창 -->
+<!-- 예약 상세내용 모달창(수정 기능 포함) -->
 <div id="res_modal" class="modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -359,35 +386,46 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-       <form action="/project1/schedule_delete">
+       <form name="form">
       <div class="modal-body" id="content">
      
 	       <table>
 	       		<tr>
-	       			<td>예약 Id</td><td class="res_id" name="id"></td>
+	       			<td>예약 Id</td><td class="res_id" name="id"></td>       		
 	       			<input type="hidden" id="id" name="id">
 	       			<input type="hidden" id="r2" name="r2">
 	       		</tr>	      		
 	       		<tr>
-	      			<td>예약명 </td><td class="res_title" name="title"></td>
-	      			<input type="hidden" id="title" name="title">
+	      			<td>예약명 </td><!-- <td class="res_title" name="title"></td> -->
+	      			<td><input type="text" id="title" name="title"></td>
 	      		</tr> 
 	      		<tr>
-	      			<td>예약일 </td><td class="res_date" name="res_date"></td>
-	      			<input type="hidden" id="res_date" name="res_date">
-	      			<input type="hidden" id="start_time" name="start_time">
+	      			<td>예약일 </td><!-- <td class="res_date" name="res_date"></td> -->
+	      			<td><input type="date" id="res_date" name="res_date"></td>
+	      			
+	      		</tr>
+	      		<tr>
+	      			<td>시간</td>
+	      			<td><input type="text" id="start_time" name="start_time" class="timepicker"></td>
+	      			<td><input type="text" id="end_time" name="end_time" class="timepicker"></td>
+	      		</tr>
+	      		<tr>
+	      			<td>색상</td>
+	      			<td><input type="color" id="color" name="color"></td>
 	      		</tr>
 	       </table>
 	      
 	      </div>
 	      <div class="modal-footer">
-	      	<input type="submit" class="btn btn-primary" id="res_submit" name="res_submit" value="삭제">
+	      	<input type="submit" class="btn btn-primary" id="res_submit" name="res_submit" value="삭제" onclick="javascript: form.action='/project1/schedule_delete'">
+	      	<input type="submit" class="btn btn-primary" id="res_update" name="res_update" value="수정" onclick="javascript: form.action='/project1/schedule_update'">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	      </div>
       </form>
     </div>
   </div>
-</div> 
+</div>
+
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>  
 </body>
 </html>

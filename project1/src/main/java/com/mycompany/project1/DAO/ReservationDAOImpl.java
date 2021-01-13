@@ -55,6 +55,13 @@ public class ReservationDAOImpl implements ReservationDAO{
 		
 	}
 
+	// 예약 내용 수정하기
+	@Override
+	public void updateReservation(ReservationBean reservation) {
+		sqlSession.update("reservation.reservationUpdate",reservation);
+		
+	}
+
 
 
 

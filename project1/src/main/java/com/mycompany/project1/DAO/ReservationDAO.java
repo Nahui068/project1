@@ -19,4 +19,10 @@ public interface ReservationDAO {
 	// 예약 내용 삭제하기
 	public void deleteReservation(ReservationBean reservation);
 	
+	// 예약 내용 가져오기
+	public ReservationBean contentReservation(ReservationBean reservation);
+	
+	// 예약 내용 수정하기
+	public void updateReservation(ReservationBean reservation);
+	
 }

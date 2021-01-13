@@ -51,6 +51,21 @@ public class ReservationServiceImpl implements ReservationService{
 		out.println("</script>");
 		
 	}
+
+	// 예약 수정하기
+	@Override
+	public void reservation_update(ReservationBean reservation, HttpServletResponse response) throws Exception {
+		
+		rd.updateReservation(reservation);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('수정되었습니다.')");
+		out.println("location.href = document.referrer");
+		out.println("</script>");
+		
+	}
+
 	
 	
 

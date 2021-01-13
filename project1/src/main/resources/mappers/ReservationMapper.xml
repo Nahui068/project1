@@ -23,5 +23,9 @@
 		delete from reservation where id=#{id} and r2=#{r2} and title=#{title} and res_date=#{res_date} and start_time=#{start_time}
 	</delete>
 	
+	<!-- 예약 내용 수정 -->
+	<update id="reservationUpdate" parameterType="reservation">
+		update reservation set title=#{title}, res_date=${res_date}, start_time=#{start_time}, end_time=#{end_time}, color=#{color} where id=#{id} and r2=#{r2}
+	</update>
 	
 </mapper>
