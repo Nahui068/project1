@@ -1,0 +1,6 @@
+package com.mycompany.project1.DAO;
+
+public interface eq_ReservationDAO {
+
+	
+}

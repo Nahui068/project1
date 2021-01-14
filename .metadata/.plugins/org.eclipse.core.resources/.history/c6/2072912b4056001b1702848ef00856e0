@@ -1,0 +1,5 @@
+package com.mycompany.project1.service;
+
+public interface eq_ReservationService {
+
+}

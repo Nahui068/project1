@@ -1,0 +1,40 @@
+package com.mycompany.project1;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.project1.service.eq_ReservationService;
+
+@Controller
+public class Eq_reservationController {
+
+	@Inject
+	eq_ReservationService service;
+	
+	// 장비 예약 화면
+	@RequestMapping("/eq_reservation")
+	public String eq_reservation() {
+		
+		return "eq_reservation";
+	}
+	
+	// 장비 예약 현황 보기
+	@RequestMapping("/eq_show")
+	public String selectEqReservation(String eq1, String eq2, Model model) throws Exception{
+		
+		
+		List rlist = (List)service.selectEqReservation(eq1, eq2);
+		model.addAttribute("rlist",rlist);
+		
+		return "eq_reservation";
+		
+	}
+	
+	
+	
+}

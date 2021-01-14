@@ -264,7 +264,7 @@
 <body>
 
 
-<h1 style="position:absolute; top:40%; left:45%;">예약신청</h1>
+<h1 style="position:absolute; top:40%; left:45%;">공간 예약신청</h1>
 
 	
 <form name="scheduleShow" method ="post" action="/project1/schedule_show">

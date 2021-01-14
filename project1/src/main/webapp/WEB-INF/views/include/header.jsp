@@ -37,11 +37,11 @@
         <a class="nav-link" href="#">예약현황</a>
       </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="/project1/reservation">예약신청</a>
+        <a class="nav-link" href="/project1/reservation">공간예약</a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="/project1/eq_reservation">장비예약</a>
+      </li>
       <c:if test="${sessionScope.id == 'admin'}">
 	     <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=# role="button" aria-haspopup="true" aria-expanded="false">관리자</a>

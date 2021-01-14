@@ -1,0 +1,15 @@
+package com.mycompany.project1.bean;
+
+public class eq_ReservationBean {
+
+	private int num;
+	private String id;
+	private String eq1;
+	private String eq2;
+	private String title;
+	private String res_date;
+	private String start_time;
+	private String end_time;
+	private String color;
+	
+}

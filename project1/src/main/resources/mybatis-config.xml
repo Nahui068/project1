@@ -11,6 +11,7 @@
 		<typeAlias type="com.mycompany.project1.bean.MemberBean" alias="member"/>
 		<typeAlias type="com.mycompany.project1.bean.BoardBean" alias="board"/>
 		<typeAlias type="com.mycompany.project1.bean.ReservationBean" alias="reservation"/>
+		<typeAlias type="com.mycompany.project1.bean.eq_ReservationBean" alias="eq_reservation"/>
 	</typeAliases>
 
 </configuration>
