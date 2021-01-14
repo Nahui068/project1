@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 
 public class ReservationBean {
 
+	private int num; // 예약 번호
 	private String id; // 회원아이디
 	private String r1; // 예약구분
 	private String r2; // 장소
@@ -14,6 +15,12 @@ public class ReservationBean {
 	private String end_time; // 예약 시간(종료)
 	private String color; //색상
 	
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public int getNum() {
+		return num;
+	}
 	public String getId() {
 		return id;
 	}

@@ -84,8 +84,6 @@ public class ReservationController {
 		
 		String session_id = (String) session.getAttribute("id");
 		String r_id = reservation.getId();
-		System.out.println(r_id);
-		System.out.println(reservation.getStart_time());
 		
 		if(session_id.equals(r_id)) {
 			service.reservation_update(reservation, response);

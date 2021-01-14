@@ -65,12 +65,12 @@
 		
 	  var dataset = [
 		<c:forEach var="rlist" items="${rlist}" varStatus="status">
-			{"id":'<c:out value="${rlist.id}" />'
-			,"groupId":'<c:out value="${rlist.r2}" />'
+			{"groupId":'<c:out value="${rlist.num}"/>'
+			,"id":'<c:out value="${rlist.id}" />'
 			,"title":'<c:out value="${rlist.title}" />'    
 			,"start":'<c:out value="${rlist.res_date}"/>'+'T'+'<c:out value="${rlist.start_time}" />'
 			,"end":'<c:out value="${rlist.res_date}"/>'+'T'+'<c:out value="${rlist.end_time}" />'
-			,"color":'<c:out value="${rlist.color}" />'
+			,"backgroundColor":'<c:out value="${rlist.color}" />'
 			},
 				
 		</c:forEach>
@@ -133,12 +133,13 @@
 		        	$('#res_modal .modal-body .res_date').text(formatDate(info.event.start) + ' ~ ' + formatDate(info.event.end));
 		        	
 		        	$('#res_modal .modal-body #id').val(info.event.id);
-		        	$('#res_modal .modal-body #r2').val(info.event.groupId);
+		        	$('#res_modal .modal-body #num').val(info.event.groupId);
 		        	$('#res_modal .modal-body #title').val(info.event.title);
 		        	$('#res_modal .modal-body #res_date').val(formatDate2(info.event.start));
 		        	$('#res_modal .modal-body #start_time').val(formatClock(info.event.start));
 		        	$('#res_modal .modal-body #end_time').val(formatClock(info.event.end));
-		        	$('#res_modal .modal-body #color').val(info.event.color);
+		        	$('#res_modal .modal-body #color').val(info.event.backgroundColor);
+		        	
 				 }
 	
 			});
@@ -393,7 +394,7 @@
 	       		<tr>
 	       			<td>예약 Id</td><td class="res_id" name="id"></td>       		
 	       			<input type="hidden" id="id" name="id">
-	       			<input type="hidden" id="r2" name="r2">
+	       			<input type="hidden" id="num" name="num">
 	       		</tr>	      		
 	       		<tr>
 	      			<td>예약명 </td><!-- <td class="res_title" name="title"></td> -->

@@ -5,7 +5,7 @@
 	
 	<!-- 예약 -->
 	<insert id = "reservationInsert" parameterType="reservation">
-		insert into reservation values(#{id},#{r1},#{r2},#{title},#{res_date},#{start_time},#{end_time},#{color})
+		insert into reservation(id,r1,r2,title,res_date,start_time,end_time,color) values(#{id},#{r1},#{r2},#{title},#{res_date},#{start_time},#{end_time},#{color})
 	</insert>
 
 	<!-- 예약 존재 여부 -->
@@ -20,12 +20,12 @@
 	
 	<!-- 예약 내용 삭제 -->
 	<delete id="reservationDelete" parameterType="reservation">
-		delete from reservation where id=#{id} and r2=#{r2} and title=#{title} and res_date=#{res_date} and start_time=#{start_time}
+		delete from reservation where id=#{id} and num=#{num}
 	</delete>
 	
 	<!-- 예약 내용 수정 -->
 	<update id="reservationUpdate" parameterType="reservation">
-		update reservation set title=#{title}, res_date=${res_date}, start_time=#{start_time}, end_time=#{end_time}, color=#{color} where id=#{id} and r2=#{r2}
+		update reservation set title=#{title}, res_date=#{res_date}, start_time=#{start_time}, end_time=#{end_time}, color=#{color} where num=#{num} and id=#{id}
 	</update>
 	
 </mapper>
