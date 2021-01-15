@@ -14,6 +14,19 @@
 		select * from eq_reservation where eq1=#{eq1} and eq2=#{eq2}
 	</select>
 	
+	<!-- 장비 예약 수정하기 -->
+	<update id="eqUpdate" parameterType="eq_reservation">
+		update eq_reservation set title=#{title},res_date=#{res_date},start_time=#{start_time},end_time=#{end_time},color=#{color} where id=#{id} and num=#{num}
+	</update>
 	
+	<!-- 장비 예약 삭제하기 -->
+	<delete id="eqDelete" parameterType="reservation">
+		delete from eq_reservation where id=#{id} and num=#{num}
+	</delete>
+	
+	<!-- 장비 사진 가져오기 -->
+	<select id="imageSelect" resultType="String" parameterType="String">
+		select url from photo where photo_name=#{photo_name}
+	</select>
 
 </mapper>

@@ -144,23 +144,23 @@
 					close.onclick = function() {
 					    modal.style.display = "none";
 					}
-					/* close2.onclick = function() {
+					close2.onclick = function() {
 					    res_modal.style.display = "none";
-					} */
+					}
 					close_button.onclick = function() {
 						modal.style.display = "none";
 					}
-					/* close_button2.onclick = function() {
+					close_button2.onclick = function() {
 						res_modal.style.display = "none";
-					} */
+					}
 					calendar.render();
 	 
 	});	
 	</script>
 	<script>
 		function eqChange(e){
-			var camera = ['소니 6500','소니 캠코더1','소니 캠코더2','고프로 히어로 9','고프로 히어로 7'];
-			var tripod = ['삼각대 4번','삼각대 5번','삼각대 6번','삼각대(모노포드)7번'];
+			var camera = ['소니 6500','소니 캠코더1','소니 캠코더2','고프로 히어로9','고프로 히어로7'];
+			var tripod = ['삼각대 4번','삼각대 5번','삼각대 6번','모노포드 7번'];
 			var mike = ['마이크1', '마이크2', '마이크3', '마이크4', '마이크5', '마이크6', '마이크7', '로드마이크1', '로드마이크2'];
 			var target = document.getElementsByName('eq2')[0];
 			
@@ -180,8 +180,8 @@
 		}
 		
 		function eqChange_modal(e){
-			var camera = ['소니 6500','소니 캠코더1','소니 캠코더2','고프로 히어로 9','고프로 히어로 7'];
-			var tripod = ['삼각대 4번','삼각대 5번','삼각대 6번','삼각대(모노포드)7번'];
+			var camera = ['소니 6500','소니 캠코더1','소니 캠코더2','고프로 히어로9','고프로 히어로7'];
+			var tripod = ['삼각대 4번','삼각대 5번','삼각대 6번','모노포드 7번'];
 			var mike = ['마이크1', '마이크2', '마이크3', '마이크4', '마이크5', '마이크6', '마이크7', '로드마이크1', '로드마이크2'];
 			var target = document.getElementsByName('eq2')[0];
 			
@@ -209,11 +209,11 @@
 	
 				$.ajax({
 					type:"post",
-					url: "eq_schedule",
+					url: "eq_submit",
 					data : {
 						id : $("input[name=id]").val(),
-						eq1 : $("select[name=eq1]").val(),
-						eq2 : $("select[name=eq2]").val(),
+						eq1 : $(".eq1").val(),
+						eq2 : $(".eq2").val(),
 						title : $("input[name=title]").val(),
 						res_date : $("input[name=res_date]").val(),
 						start_time : $("input[name=start_time]").val(),
@@ -249,7 +249,7 @@
 		
 			position:absolute;
 			left:20%;
-			top:70%;
+			top:75%;
 			width:60%;
 			height:80%;
 		}
@@ -270,20 +270,22 @@
 		</select>
 	</span>
 	
-	<span style="position:absolute; top:50%; left:51%;">	
+	<span style="position:absolute; top:50%; left:48%;">	
 		<select class="form-control" id="exampleSelect1" name="eq2">
-			<option>장소</option>	
+			<option>종류</option>	
 		</select>
 	</span>
 	
-	<span style="position:absolute; top:50%; left:60%;">	
-		<input type="submit" id="show_btn" name="show" class="btn btn-info" value="조회">
+	<span style="position:absolute; top:50%; left:58%;">	
+		<input type="submit" class="btn btn-info" value="조회">
 	</span>
 </form>
 
-<span style="position:absolute; top:58%; left:40%;">
+<img src="${url}" style="position:absolute; top:50%; right:24%; width:10%; height:20%;">
+<span style="position:absolute; top:60%; left:42%;">
 	<c:if test="${!empty eq2}">
 		<h1>${eq1} ${eq2}</h1>
+		
 	</c:if>
 </span>
 
@@ -309,26 +311,28 @@
         	<tr>
 				<td style="text-align:center">장소</td>
 				<td>
-				<select class="form-control" name ="eq1" id="exampleSelect1" onchange="eqChange_modal(this)">
-					<option value=""> 예약구분</option>
+				<select class="form-control eq1" name ="eq1" id="exampleSelect1" onchange="eqChange_modal(this)">
+					<option> 예약구분</option>
 					<option value="카메라" <c:if test="${eq1 eq '카메라'}"> selected </c:if>>카메라</option>
 					<option value="삼각대"<c:if test="${eq1 eq '삼각대'}"> selected </c:if>>삼각대</option>
 					<option value="마이크"<c:if test="${eq1 eq '마이크'}"> selected </c:if>>마이크</option>
 				</select>
 				</td>
 				<td>
-				<select class="form-control" name ="eq2" id="exampleSelect1">
+				<select class="form-control eq2" name ="eq2" id="exampleSelect1">
 					<option>종류</option>
 					<c:if test="${eq1 eq '카메라' && !empty eq2}">
 						<option value="소니 6500" <c:if test="${eq2 eq '소니 6500'}">selected</c:if>>소니 6500</option>
-						<option value="소니 캠코더 1" <c:if test="${eq2 eq '소니 캠코더 1'}">selected</c:if>>소니 캠코더 1</option>
-						<option value="소니 캠코더 2" <c:if test="${eq2 eq '소니 캠코더 2'}">selected</c:if>>소니 캠코더 2</option>
+						<option value="소니 캠코더1" <c:if test="${eq2 eq '소니 캠코더1'}">selected</c:if>>소니 캠코더1</option>
+						<option value="소니 캠코더2" <c:if test="${eq2 eq '소니 캠코더2'}">selected</c:if>>소니 캠코더2</option>
+						<option value="고프로 히어로7" <c:if test="${eq2 eq '고프로 히어로7'}">selected</c:if>>고프로 히어로7</option>
+						<option value="고프로 히어로9" <c:if test="${eq2 eq '고프로 히어로9'}">selected</c:if>>고프로 히어로9</option>
 					</c:if>
 					<c:if test="${eq1 eq '삼각대' && !empty eq2}">
 						<option value="삼각대 4번" <c:if test="${eq2 eq '삼각대 4번'}">selected</c:if>>삼각대 4번</option>
 						<option value="삼각대 5번" <c:if test="${eq2 eq '삼각대 5번'}">selected</c:if>>삼각대 5번</option>
 						<option value="삼각대 6번" <c:if test="${eq2 eq '삼각대 6번'}">selected</c:if>>삼각대 6번</option>	
-						<option value="삼각대(모노포드) 7번" <c:if test="${eq2 eq '삼각대(모노포드) 7번'}">selected</c:if>>삼각대(모노포드) 7번</option>	
+						<option value="삼각대(모노포드) 7번" <c:if test="${eq2 eq '모노포드 7번'}">selected</c:if>>삼각대(모노포드) 7번</option>	
 							
 					</c:if>
 					<c:if test="${eq1 eq '마이크' && !empty eq2}">
@@ -371,5 +375,56 @@
     </div>
   </div>
 </div>
+
+<!-- 예약 상세내용 모달창(수정 기능 포함) -->
+<div id="res_modal" class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">예약확인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+       <form name="form">
+      <div class="modal-body" id="content">
+     
+	       <table>
+	       		<tr>
+	       			<td>예약 Id</td><td class="res_id" name="id"></td>       		
+	       			<input type="hidden" id="id" name="id">
+	       			<input type="hidden" id="num" name="num">
+	       		</tr>	      		
+	       		<tr>
+	      			<td>예약명 </td><!-- <td class="res_title" name="title"></td> -->
+	      			<td><input type="text" id="title" name="title"></td>
+	      		</tr> 
+	      		<tr>
+	      			<td>예약일 </td><!-- <td class="res_date" name="res_date"></td> -->
+	      			<td><input type="date" id="res_date" name="res_date"></td>
+	      			
+	      		</tr>
+	      		<tr>
+	      			<td>시간</td>
+	      			<td><input type="text" id="start_time" name="start_time" class="timepicker"></td>
+	      			<td><input type="text" id="end_time" name="end_time" class="timepicker"></td>
+	      		</tr>
+	      		<tr>
+	      			<td>색상</td>
+	      			<td><input type="color" id="color" name="color"></td>
+	      		</tr>
+	       </table>
+	      
+	      </div>
+	      <div class="modal-footer">
+	      	<input type="submit" class="btn btn-primary" id="res_submit" name="res_submit" value="삭제" onclick="javascript: form.action='/project1/eq_delete'">
+	      	<input type="submit" class="btn btn-primary" id="res_update" name="res_update" value="수정" onclick="javascript: form.action='/project1/eq_update'">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>  
 </body>
 </html>

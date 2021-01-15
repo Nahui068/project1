@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eq_reservation">
+
+	<!-- 장비예약 -->
+	<insert id="eqInsert" parameterType="eq_reservation">
+		insert into eq_reservation(id,eq1,eq2,title,res_date,start_time,end_time,color) 
+		values(#{id},#{eq1},#{eq2},#{title},#{res_date},#{start_time},#{end_time},#{color}) 
+	</insert>
+	
+	<!-- 장비 예약 현황보기 -->
+	<select id="eqSelect" resultType="eq_reservation" parameterType="hashmap">
+		select * from eq_reservation where eq1=#{eq1} and eq2=#{eq2}
+	</select>
+	
+	<!-- 장비 예약 수정하기 -->
+	<update id="eqUpdate" parameterType="eq_reservation">
+		update eq_reservation set title=#{title},res_date=#{res_date},start_time=#{start_time},end_time=#{end_time},color=#{color} where id=#{id} and num=#{num}
+	</update>
+	
+	<!-- 장비 예약 삭제하기 -->
+	<delete id="eqDelete" parameterType="reservation">
+		delete from eq_reservation where id=#{id} and num=#{num}
+	</delete>
+	
+	<!-- 장비 사진 가져오기 -->
+	<select id="imageSelect" 
+
+</mapper>

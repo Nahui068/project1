@@ -5,3 +5,14 @@
 1610433602334	Delete element
 1610586225536	Delete element
 1610594663693	Delete element
+1610674725143	Rename type 'Eq_reservationController'
+1610674736859	Rename type 'eq_ReservationBean'
+1610674755229	Rename type 'eq_ReservationDAO'
+1610674771660	Rename type 'eq_ReservationDAOImpl'
+1610674784123	Rename type 'eq_ReservationService'
+1610674796532	Rename type 'eq_ReservationServiceImpl'
+1610688336605	Rename resource '소니 6500.jpg'
+1610690159178	Move folder
+1610691036901	Delete element
+1610691674585	Rename resource '삼각대 4.png'
+1610691830091	Rename resource '모노포드 7.png'
