@@ -26,7 +26,7 @@ public class ReservationServiceImpl implements ReservationService{
 		int rcount = rd.confirmReservation(reservation.getR1(), reservation.getR2(),
 				reservation.getRes_date(), reservation.getStart_time()); // 겹치는 시간 여부
 		
-		if(rcount == 0)// 시간이 겹치지 않을 경우 예약 완료
+		if(rcount == 0)
 			rd.insertReservation(reservation);
 		
 	}

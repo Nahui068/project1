@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>장비예약</title>
+	<title>예약신청</title>
 	
 	<!-- 제이쿼리를 사용하기 위한 라이브러리 -->
 	<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -29,7 +29,7 @@
 	
 	<link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="resources/css/style-css.css" rel="stylesheet" type="text/css">
-	
+  	
 	<script>
 	// 날짜 포맷 yyyy-mm-dd HH:mm
 	  function formatDate(date) { 
@@ -94,81 +94,85 @@
 			      },
 			  defaultView: 'timeGridWeek',
 			  locale : "ko",
-			  firstDay: 1,
 			  selectable: true,
 			  navLinks:true,
-			  select: function(info) {
-					var start_time = info.startStr.substring(11,16); // 시작 시간
-					var end_time = info.endStr.substring(11,16); // 끝 시간
-					
-					var d = info.startStr.substring(0,10); // 날짜 가져오기
-					var str2arr = d.split("-");
-					var s_date_obj = new Date(str2arr[0], str2arr[1] - 1, str2arr[2]);
-					var s_year = s_date_obj.getFullYear(); // 선택된 날짜 연도
-					var s_month = s_date_obj.getMonth() + 1; // 선택된 날짜 월
-					var s_day = s_date_obj.getDate(); // 선택된 날짜 일
-					if(s_month < 10) s_month = '0' + s_month; // 10월 보다 작은 월에 0을 붙혀주기 위함
-					if(s_day < 10) s_day = '0' + s_day; // 10일 보다 작은 일에 0을 붙혀주기 위함
-					
-				    $.ajax({
-					    type : "post", //송신 데이터타입
-					    url : "date",
-					    data : {year:s_year, month:s_month, day:s_day},
-					    success : function(data){
-					    	$('#res_date').val(data);
-					    }
-					});
-				    	$("#start_time").val(start_time);
-				    	$("#end_time").val(end_time);
-				    	  
-
-				    	modal.style.display = "block";
-			        },
-			        events : dataset,
-			        eventClick:function(info){
-			        	//info.jsEvent.preventDefault();
-			        	
-			        	$('#res_modal').show();
-			        	$('#res_modal .modal-body .res_id').text(info.event.id);
-			        	$('#res_modal .modal-body .res_title').text(info.event.title);
-			        	$('#res_modal .modal-body .res_date').text(formatDate(info.event.start) + ' ~ ' + formatDate(info.event.end));
-			        	
-			        	$('#res_modal .modal-body #id').val(info.event.id);
-			        	$('#res_modal .modal-body #num').val(info.event.groupId);
-			        	$('#res_modal .modal-body #title').val(info.event.title);
-			        	$('#res_modal .modal-body #res_date').val(formatDate2(info.event.start));
-			        	$('#res_modal .modal-body #start_time').val(formatClock(info.event.start));
-			        	$('#res_modal .modal-body #end_time').val(formatClock(info.event.end));
-			        	$('#res_modal .modal-body #color').val(info.event.backgroundColor);
-			        }
+		      select: function(info) {
+				var start_time = info.startStr.substring(11,16); // 시작 시간
+				var end_time = info.endStr.substring(11,16); // 끝 시간
+				
+				var d = info.startStr.substring(0,10); // 날짜 가져오기
+				var str2arr = d.split("-");
+				var s_date_obj = new Date(str2arr[0], str2arr[1] - 1, str2arr[2]);
+				var s_year = s_date_obj.getFullYear(); // 선택된 날짜 연도
+				var s_month = s_date_obj.getMonth() + 1; // 선택된 날짜 월
+				var s_day = s_date_obj.getDate(); // 선택된 날짜 일
+				if(s_month < 10) s_month = '0' + s_month; // 10월 보다 작은 월에 0을 붙혀주기 위함
+				if(s_day < 10) s_day = '0' + s_day; // 10일 보다 작은 일에 0을 붙혀주기 위함
+				
+			    $.ajax({
+				    type : "post", //송신 데이터타입
+				    url : "date",
+				    data : {year:s_year, month:s_month, day:s_day},
+				    success : function(data){
+				    	$('#res_date').val(data);
+				    }
 				});
-					close.onclick = function() {
-					    modal.style.display = "none";
-					}
-					close2.onclick = function() {
-					    res_modal.style.display = "none";
-					}
-					close_button.onclick = function() {
-						modal.style.display = "none";
-					}
-					close_button2.onclick = function() {
-						res_modal.style.display = "none";
-					}
-					calendar.render();
-	 
-	});	
+			    	$("#start_time").val(start_time);
+			    	$("#end_time").val(end_time);
+			    	  
+
+			    	modal.style.display = "block";
+		        },
+		        events : dataset,
+		        eventClick:function(info){
+		        	//info.jsEvent.preventDefault();
+		        	
+		        	$('#res_modal').show();
+		        	$('#res_modal .modal-body .res_id').text(info.event.id);
+		        	$('#res_modal .modal-body .res_title').text(info.event.title);
+		        	$('#res_modal .modal-body .res_date').text(formatDate(info.event.start) + ' ~ ' + formatDate(info.event.end));
+		        	
+		        	$('#res_modal .modal-body #id').val(info.event.id);
+		        	$('#res_modal .modal-body #num').val(info.event.groupId);
+		        	$('#res_modal .modal-body #title').val(info.event.title);
+		        	$('#res_modal .modal-body #res_date').val(formatDate2(info.event.start));
+		        	$('#res_modal .modal-body #start_time').val(formatClock(info.event.start));
+		        	$('#res_modal .modal-body #end_time').val(formatClock(info.event.end));
+		        	$('#res_modal .modal-body #color').val(info.event.backgroundColor);
+		        	
+				 }
+	
+			});
+			close.onclick = function() {
+		        modal.style.display = "none";
+		    }
+			close2.onclick = function() {
+		        res_modal.style.display = "none";
+		    }
+		    close_button.onclick = function() {
+				modal.style.display = "none";
+			}
+		    close_button2.onclick = function() {
+				res_modal.style.display = "none";
+			}
+		
+			calendar.render();
+		});
+		
+ 		
 	</script>
+	
 	<script>
-		function eqChange(e){
-			var camera = ['소니 6500','소니 캠코더1','소니 캠코더2','고프로 히어로9','고프로 히어로7'];
-			var tripod = ['삼각대 4번','삼각대 5번','삼각대 6번','모노포드 7번'];
-			var mike = ['마이크1', '마이크2', '마이크3', '마이크4', '마이크5', '마이크6', '마이크7', '로드마이크1', '로드마이크2'];
-			var target = document.getElementsByName('eq2')[0];
+		function roomChange(e){
+			var studio = ['1006호 A','1006호 B','1707호 C'];
+			var meeting = ['1005호 A','424호 B',];
+			var cafeteria = ['1006호','1707호'];
+			var target = document.getElementsByName('room2')[0];
 			
-			if(e.value == "카메라") var d = camera;
-			else if(e.value == "삼각대") var d = tripod;
-			else if(e.value == "마이크") var d = mike;
-			
+			if(e.value == "studio") var d = studio;
+			else if(e.value == "meeting") var d = meeting;
+			else if(e.value == "cafeteria") var d = cafeteria;
+
 			target.options.length = 0;
 	
 			for (x in d) {
@@ -179,42 +183,40 @@
 					target.appendChild(opt);
 			}	
 		}
-		
-		function eqChange_modal(e){
-			var camera = ['소니 6500','소니 캠코더1','소니 캠코더2','고프로 히어로9','고프로 히어로7'];
-			var tripod = ['삼각대 4번','삼각대 5번','삼각대 6번','모노포드 7번'];
-			var mike = ['마이크1', '마이크2', '마이크3', '마이크4', '마이크5', '마이크6', '마이크7', '로드마이크1', '로드마이크2'];
-			var target = document.getElementsByName('eq2')[0];
-			
-			if(e.value == "카메라") var d = camera;
-			else if(e.value == "삼각대") var d = tripod;
-			else if(e.value == "마이크") var d = mike;
+		function roomChange_modal(e){
+			var studio = ['1006호 A','1006호 B','1707호 C'];
+			var meeting = ['1005호 A','424호 B']
+			var cafeteria = ['1006호','1707호'];
+			var target = document.getElementsByName('r2')[0];
+
+			if(e.value == "studio") var d = studio;
+			else if(e.value == "meeting") var d = meeting;
+			else if(e.value == "cafeteria") var d = cafeteria;
 			
 			target.options.length = 0;
-	
+
 			for (x in d) {
 				var opt = document.createElement("option");
 				opt.value = d[x];
 				opt.innerHTML = d[x];
-				if(target)
-					target.appendChild(opt);
+				target.appendChild(opt);
 			}	
 		}
 
 		$(document).ready(function(){
 
-		    
-			$("#eq_res_submit").click(function(){
+			    
+			$("#res_submit").click(function(){
 	
-				theForm = document.eq_reservationAdd;
+				theForm = document.reservationAdd;
 	
 				$.ajax({
 					type:"post",
-					url: "eq_submit",
+					url: "res_submit",
 					data : {
 						id : $("input[name=id]").val(),
-						eq1 : $(".eq1").val(),
-						eq2 : $(".eq2").val(),
+						r1 : $("select[name=r1]").val(),
+						r2 : $("select[name=r2]").val(),
 						title : $("input[name=title]").val(),
 						res_date : $("input[name=res_date]").val(),
 						start_time : $("input[name=start_time]").val(),
@@ -230,27 +232,29 @@
 				});
 			});
 		});
+		
 	</script>
 	<script>
-	    $(document).ready(function(){
-	    	$('.timepicker').timepicker({
-	    	    timeFormat: 'H:mm',
-	    	    interval: 30,
-	    	    maxTime: '23:00',   
-	    	    dynamic: false,
-	    	    dropdown: true,
-	    	    scrollbar: true,
-	    	    zindex:99999
-	    	});
-	    });
+    $(document).ready(function(){
+    	$('.timepicker').timepicker({
+    	    timeFormat: 'H:mm',
+    	    interval: 30,
+    	    maxTime: '23:00',   
+    	    dynamic: false,
+    	    dropdown: true,
+    	    scrollbar: true,
+    	    zindex:99999
+    	});
+    });
         
 	</script>
+	
 	<style>
 		#calendar{
 		
 			position:absolute;
 			left:20%;
-			top:75%;
+			top:70%;
 			width:60%;
 			height:80%;
 		}
@@ -258,39 +262,39 @@
 	</style>
 </head>
 <body>
-<h1 style="position:absolute; top:40%; left:45%;">장비 예약신청</h1>
+
+
+<h1 style="position:absolute; top:40%; left:45%;">공간 예약신청</h1>
 
 	
-<form name="eqShow" method ="post" action="/project1/eq_show">
+<form name="scheduleShow" method ="post" action="/project1/schedule_show">
 	<span style="position:absolute; top:50%; left:41%;">
-		<select class="form-control" id="exampleSelect1" name="eq1" onchange="eqChange(this)">
+		<select class="form-control" id="exampleSelect1" name="room1" onchange="roomChange(this)">
 			<option>예약구분</option>
-			<option value="카메라">카메라</option>
-			<option value="삼각대">삼각대</option>
-			<option value="마이크">마이크</option>
+			<option value="studio">스튜디오</option>
+			<option value="meeting">회의실</option>
+			<option value="cafeteria">카페테리아</option>
 		</select>
 	</span>
 	
-	<span style="position:absolute; top:50%; left:48%;">	
-		<select class="form-control" id="exampleSelect1" name="eq2">
-			<option>종류</option>	
+	<span style="position:absolute; top:50%; left:51%;">	
+		<select class="form-control" id="exampleSelect1" name="room2">
+			<option>장소</option>	
 		</select>
 	</span>
 	
-	<span style="position:absolute; top:50%; left:58%;">	
-		<input type="submit" class="btn btn-info" value="조회">
+	<span style="position:absolute; top:50%; left:60%;">	
+		<input type="submit" id="show_btn" name="show" class="btn btn-info" value="조회">
 	</span>
 </form>
 
-<img src="${url}" style="position:absolute; top:50%; right:24%; width:10%; height:20%;">
-<span style="position:absolute; top:60%; left:42%;">
-	<c:if test="${!empty eq2}">
-		<h1>${eq1} ${eq2}</h1>
-		
+<span style="position:absolute; top:58%; left:40%;">
+	<c:if test="${!empty room2}">
+		<h1>${room1} ${room2}</h1>
 	</c:if>
 </span>
 
-<div id='calendar'></div>
+<div id='calendar'></div>	
 
 <!-- 예약 모달창 -->
 <div id="myModal" class="modal">
@@ -303,7 +307,7 @@
         </button>
       </div>
       <div class="modal-body">  
-      <form name="eq_reservationAdd" method="post">
+      <form name="reservationAdd" method="post">
         <table>
         	<tr>
         		<td style="text-align:center">아이디</td><td>${sessionScope.id}</td>
@@ -312,40 +316,28 @@
         	<tr>
 				<td style="text-align:center">장소</td>
 				<td>
-				<select class="form-control eq1" name ="eq1" id="exampleSelect1" onchange="eqChange_modal(this)">
-					<option> 예약구분</option>
-					<option value="카메라" <c:if test="${eq1 eq '카메라'}"> selected </c:if>>카메라</option>
-					<option value="삼각대"<c:if test="${eq1 eq '삼각대'}"> selected </c:if>>삼각대</option>
-					<option value="마이크"<c:if test="${eq1 eq '마이크'}"> selected </c:if>>마이크</option>
+				<select class="form-control" name ="r1" id="exampleSelect1" onchange="roomChange_modal(this)">
+					<option value=""> 예약구분</option>
+					<option value="studio" <c:if test="${room1 eq 'studio'}"> selected </c:if>>스튜디오</option>
+					<option value="meeting"<c:if test="${room1 eq 'meeting'}"> selected </c:if>>회의실</option>
+					<option value="cafeteria"<c:if test="${room1 eq 'cafeteria'}"> selected </c:if>>카페테리아</option>
 				</select>
 				</td>
 				<td>
-				<select class="form-control eq2" name ="eq2" id="exampleSelect1">
-					<option>종류</option>
-					<c:if test="${eq1 eq '카메라' && !empty eq2}">
-						<option value="소니 6500" <c:if test="${eq2 eq '소니 6500'}">selected</c:if>>소니 6500</option>
-						<option value="소니 캠코더1" <c:if test="${eq2 eq '소니 캠코더1'}">selected</c:if>>소니 캠코더1</option>
-						<option value="소니 캠코더2" <c:if test="${eq2 eq '소니 캠코더2'}">selected</c:if>>소니 캠코더2</option>
-						<option value="고프로 히어로7" <c:if test="${eq2 eq '고프로 히어로7'}">selected</c:if>>고프로 히어로7</option>
-						<option value="고프로 히어로9" <c:if test="${eq2 eq '고프로 히어로9'}">selected</c:if>>고프로 히어로9</option>
+				<select class="form-control" name = "r2" id="exampleSelect1">
+					<option>장소</option>
+					<c:if test="${room1 eq 'studio' && !empty room2}">
+						<option value="1006호 A" <c:if test="${room2 eq '1006호 A'}">selected</c:if>>1006호 A</option>
+						<option value="1006호 B" <c:if test="${room2 eq '1006호 B'}">selected</c:if>>1006호 B</option>
+						<option value="1707호 C" <c:if test="${room2 eq '1707호 C'}">selected</c:if>>1707호 C</option>
 					</c:if>
-					<c:if test="${eq1 eq '삼각대' && !empty eq2}">
-						<option value="삼각대 4번" <c:if test="${eq2 eq '삼각대 4번'}">selected</c:if>>삼각대 4번</option>
-						<option value="삼각대 5번" <c:if test="${eq2 eq '삼각대 5번'}">selected</c:if>>삼각대 5번</option>
-						<option value="삼각대 6번" <c:if test="${eq2 eq '삼각대 6번'}">selected</c:if>>삼각대 6번</option>	
-						<option value="삼각대(모노포드) 7번" <c:if test="${eq2 eq '모노포드 7번'}">selected</c:if>>삼각대(모노포드) 7번</option>	
-							
+					<c:if test="${room1 eq 'meeting' && !empty room2}">
+						<option value="1005호 A" <c:if test="${room2 eq '1005호 A'}">selected</c:if>>1005호 A</option>
+						<option value="424호 B" <c:if test="${room2 eq '424호 B'}">selected</c:if>>424호 B</option>	
 					</c:if>
-					<c:if test="${eq1 eq '마이크' && !empty eq2}">
-						<option value="마이크1" <c:if test="${eq2 eq '마이크1'}">selected</c:if>>마이크1</option>
-						<option value="마이크2" <c:if test="${eq2 eq '마이크2'}">selected</c:if>>마이크2</option>
-						<option value="마이크3" <c:if test="${eq2 eq '마이크3'}">selected</c:if>>마이크3</option>	
-						<option value="마이크4" <c:if test="${eq2 eq '마이크4'}">selected</c:if>>마이크4</option>	
-						<option value="마이크5" <c:if test="${eq2 eq '마이크5'}">selected</c:if>>마이크5</option>	
-						<option value="마이크6" <c:if test="${eq2 eq '마이크6'}">selected</c:if>>마이크6</option>	
-						<option value="마이크7" <c:if test="${eq2 eq '마이크7'}">selected</c:if>>마이크7</option>	
-						<option value="로드마이크1" <c:if test="${eq2 eq '로드마이크1'}">selected</c:if>>로드마이크1</option>	
-						<option value="로드마이크2" <c:if test="${eq2 eq '로드마이크2'}">selected</c:if>>로드마이크2</option>		
+					<c:if test="${room1 eq 'cafeteria' && !empty room2}">
+						<option value="1006호" <c:if test="${room2 eq '1006호'}">selected</c:if>>1006호</option>
+						<option value="1707호" <c:if test="${room2 eq '1707호'}">selected</c:if>>1707호</option>	
 					</c:if>					 
 				</select>
 				</td>
@@ -363,14 +355,22 @@
 				<td style="text-align:center">색상</td>
 				<td>
 					<input type="color" name="color" id="color">
-
+					<!-- <select class="custom-select" name="color" id="color">
+						<select class="sc_color" name="sc_color" id="sc_color">
+						<option value="">색상
+						<option value="#FFEB5A" style="color:#FFEB5A;"> 노랑색</option>
+						<option value="#C45FDD" style="color:#C45FDD;"> 보라색</option>
+						<option value="#5AD18F" style="color:#5AD18F;"> 초록색</option>
+						<option value="#5CEEE6" style="color:#5CEEE6;"> 민트색</option>
+					</select>
+		 -->
 				</td>
 			</tr>
         </table>
        </form>
       </div>      
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="eq_res_submit" name="eq_res_submit">저장</button>
+        <button type="button" class="btn btn-primary" id="res_submit" name="res_submit">저장</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>     
     </div>
@@ -418,14 +418,15 @@
 	      
 	      </div>
 	      <div class="modal-footer">
-	      	<input type="submit" class="btn btn-primary" id="res_submit" name="res_submit" value="삭제" onclick="javascript: form.action='/project1/eq_delete'">
-	      	<input type="submit" class="btn btn-primary" id="res_update" name="res_update" value="수정" onclick="javascript: form.action='/project1/eq_update'">
+	      	<input type="submit" class="btn btn-primary" id="res_submit" name="res_submit" value="삭제" onclick="javascript: form.action='/project1/schedule_delete'">
+	      	<input type="submit" class="btn btn-primary" id="res_update" name="res_update" value="수정" onclick="javascript: form.action='/project1/schedule_update'">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	      </div>
       </form>
     </div>
   </div>
 </div>
+
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>  
 </body>
 </html>

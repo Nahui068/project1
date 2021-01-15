@@ -94,6 +94,7 @@
 			      },
 			  defaultView: 'timeGridWeek',
 			  locale : "ko",
+			  firstDay: 1,
 			  selectable: true,
 			  navLinks:true,
 		      select: function(info) {

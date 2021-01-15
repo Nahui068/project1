@@ -57,7 +57,7 @@ public class AdminController {
 	@RequestMapping(value="/admin_content")
 	public String content(String title,int num, Model model) throws Exception {
 			
-		BoardBean board_content = service.board_content(num,title); // 게시글 번호와 제목이 일치하는 게시글 내용 가져오기
+		BoardBean board_content = service.board_content(num,title);
 			
 		model.addAttribute("content", board_content);
 			
