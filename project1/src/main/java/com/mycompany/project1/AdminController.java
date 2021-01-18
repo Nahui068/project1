@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.project1.bean.BoardBean;
+import com.mycompany.project1.bean.MemberBean;
 import com.mycompany.project1.bean.Pagination;
 import com.mycompany.project1.service.AdminService;
 
@@ -87,6 +88,12 @@ public class AdminController {
 	@RequestMapping(value="/board_delete")
 	public void boardDelete(int num, String title,HttpServletResponse response) throws Exception{
 		service.board_delete(num, title, response);
+	}
+	
+	// 회원삭제
+	@RequestMapping(value="/member_delete")
+	public void memberDelete(MemberBean member,HttpServletResponse response) throws Exception{
+		service.member_delete(member, response);
 	}
 	
 }

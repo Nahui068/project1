@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mycompany.project1.bean.BoardBean;
+import com.mycompany.project1.bean.MemberBean;
 import com.mycompany.project1.bean.Pagination;
 
 public interface AdminService {
@@ -27,4 +28,6 @@ public interface AdminService {
 	// 게시글 삭제
 	public void board_delete(int num, String title, HttpServletResponse response) throws Exception;
 	
+	// 회원 삭제
+	public void member_delete(MemberBean member,HttpServletResponse response) throws Exception;
 }

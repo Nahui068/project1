@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.project1.bean.BoardBean;
+import com.mycompany.project1.bean.MemberBean;
 import com.mycompany.project1.bean.Pagination;
 
 @Repository
@@ -66,5 +67,12 @@ public class AdminDAOImpl implements AdminDAO{
 		dmap.put("title", title);
 		
 		sqlSession.selectOne("board.boardDelete",dmap);
+	}
+
+	// 회원 삭제
+	@Override
+	public void member_delete(MemberBean member) throws Exception {
+		sqlSession.delete("member.memberDelete",member);
+		
 	}
 }

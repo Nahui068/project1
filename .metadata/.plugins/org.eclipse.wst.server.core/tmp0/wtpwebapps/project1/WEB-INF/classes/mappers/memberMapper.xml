@@ -32,5 +32,10 @@
 	<select id="memberCount" resultType="int">
 		select count(*) from member;
 	</select>
+	
+	<!-- 회원삭제 -->
+	<delete id="memberDelete" parameterType="member">
+		delete from member where name=#{name} and id=#{id}
+	</delete>
 
 </mapper>

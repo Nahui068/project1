@@ -62,6 +62,7 @@ public class EqReservationController {
 		
 		if(session_id.equals(r_id)) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 수정
 			service.updateEqReservation(eqReservation,response);
+			
 		}else {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
@@ -79,7 +80,7 @@ public class EqReservationController {
 		String session_id = (String) session.getAttribute("id");
 		String r_id = eqReservation.getId();
 		
-		if(session_id.equals(r_id)) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 삭제
+		if(session_id.equals(r_id) || session_id.equals("admin")) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 삭제
 			service.deleteEqReservation(eqReservation,response);
 		}else {
 			response.setContentType("text/html;charset=utf-8");

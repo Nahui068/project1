@@ -63,10 +63,11 @@ public class ReservationController {
 	// 예약 삭제하기
 	@RequestMapping("/schedule_delete")
 	public void deleteReservation(ReservationBean reservation,HttpSession session,HttpServletResponse response) throws Exception {
+		
 		String session_id = (String) session.getAttribute("id");
 		String r_id = reservation.getId();
 		
-		if(session_id.equals(r_id)) {
+		if(session_id.equals(r_id) || session_id.equals("admin")) {
 			service.reservation_delete(reservation, response);
 		}else {
 			response.setContentType("text/html;charset=utf-8");

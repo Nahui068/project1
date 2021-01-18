@@ -122,7 +122,15 @@
 			    	$("#end_time").val(end_time);
 			    	  
 
-			    	modal.style.display = "block";
+			    	var today = new Date();			
+					
+					var betweenDay = (s_date_obj.getTime()-today.getTime())/1000/60/60/24;
+					console.log(betweenDay);
+
+					// 2주만 예약 가능
+					if(betweenDay>=-1 && betweenDay<=14){
+				    	modal.style.display = "block";
+					}
 		        },
 		        events : dataset,
 		        eventClick:function(info){
@@ -238,7 +246,7 @@
 	<script>
     $(document).ready(function(){
     	$('.timepicker').timepicker({
-    	    timeFormat: 'H:mm',
+    	    timeFormat: 'HH:mm',
     	    interval: 30,
     	    maxTime: '23:00',   
     	    dynamic: false,

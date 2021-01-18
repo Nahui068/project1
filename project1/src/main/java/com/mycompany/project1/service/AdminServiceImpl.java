@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.mycompany.project1.DAO.AdminDAO;
 import com.mycompany.project1.DAO.BoardDAO;
 import com.mycompany.project1.bean.BoardBean;
+import com.mycompany.project1.bean.MemberBean;
 import com.mycompany.project1.bean.Pagination;
 
 @Service
@@ -81,6 +82,19 @@ public class AdminServiceImpl implements AdminService{
 		out.println("<script>");
 		out.println("alert('게시글이 삭제되었습니다.')");
 		out.println("window.location='admin_board'");
+		out.println("</script>");
+		
+	}
+
+	// 회원삭제
+	@Override
+	public void member_delete(MemberBean member, HttpServletResponse response) throws Exception {
+		ad.member_delete(member);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('회원이 삭제되었습니다.')");
+		out.println("window.location='memberList'");
 		out.println("</script>");
 		
 	}

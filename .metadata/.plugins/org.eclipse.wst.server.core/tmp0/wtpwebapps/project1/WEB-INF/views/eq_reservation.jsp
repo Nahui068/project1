@@ -126,7 +126,8 @@
 						
 					var betweenDay = (s_date_obj.getTime()-today.getTime())/1000/60/60/24;
 					console.log(betweenDay);
-					
+
+					// 2주만 예약 가능
 					if(betweenDay>=-1 && betweenDay<=14){
 				    	modal.style.display = "block";
 					}
@@ -242,7 +243,7 @@
 	<script>
 	    $(document).ready(function(){
 	    	$('.timepicker').timepicker({
-	    	    timeFormat: 'H:mm',
+	    	    timeFormat: 'HH:mm',
 	    	    interval: 30,
 	    	    maxTime: '23:00',   
 	    	    dynamic: false,
@@ -258,7 +259,7 @@
 		
 			position:absolute;
 			left:20%;
-			top:75%;
+			top:70%;
 			width:60%;
 			height:80%;
 		}
@@ -268,7 +269,6 @@
 <body>
 <h1 style="position:absolute; top:40%; left:45%;">장비 예약신청</h1>
 
-	
 <form name="eqShow" method ="post" action="/project1/eq_show">
 	<span style="position:absolute; top:50%; left:41%;">
 		<select class="form-control" id="exampleSelect1" name="eq1" onchange="eqChange(this)">
@@ -291,14 +291,23 @@
 </form>
 
 <c:if test="${!empty url}">
-<img src="${url}" style="position:absolute; top:50%; right:24%; width:10%; height:20%;">
-</c:if>
-<span style="position:absolute; top:60%; left:42%;">
+<figure style="position:absolute; top:45%; left:28%; z-index:-1;">
+<img src="${url}" style=" width:25%; height:25%;">
+<figcaption>
 	<c:if test="${!empty eq2}">
-		<h1>${eq1} ${eq2}</h1>
+		${eq1} ${eq2}
+	</c:if>
+</figcaption>
+</figure>
+</c:if>
+
+
+<%-- <span style="position:absolute; top:60%; left:42%;">
+	<c:if test="${!empty eq2}">
+		<h3>${eq1} ${eq2}</h3>
 		
 	</c:if>
-</span>
+</span> --%>
 
 <div id='calendar'></div>
 

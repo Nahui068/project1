@@ -34,4 +34,5 @@ public interface memberService {
 	
 	// 회원 수
 	public int memberCount() throws Exception;
+	
 }

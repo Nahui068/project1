@@ -3,6 +3,7 @@ package com.mycompany.project1.DAO;
 import java.util.List;
 
 import com.mycompany.project1.bean.BoardBean;
+import com.mycompany.project1.bean.MemberBean;
 import com.mycompany.project1.bean.Pagination;
 
 public interface AdminDAO {
@@ -24,5 +25,8 @@ public interface AdminDAO {
 	
 	// 게시글 삭제
 	public void board_delete(int num, String title) throws Exception;
+	
+	// 회원 삭제
+	public void member_delete(MemberBean member) throws Exception;
 
 }
