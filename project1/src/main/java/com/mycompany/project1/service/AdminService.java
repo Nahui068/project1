@@ -30,4 +30,6 @@ public interface AdminService {
 	
 	// 회원 삭제
 	public void member_delete(MemberBean member,HttpServletResponse response) throws Exception;
+	
+	
 }

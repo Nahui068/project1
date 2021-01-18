@@ -78,31 +78,32 @@ function fn_pagination(page, range, rangeSize, searchType, keyword) {
 			<td><c:out value="${dateTempParse}"></c:out></td>
 		</tr>
 	</c:forEach>
-	
 	</table>
-	
-		<ul class="pagination" style="position:absolute; top:120%; left:40%; width:50%;">
-			<c:if test="${pagination.prev}">
 
-				<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
+		
+	<ul class="pagination" style="position:absolute; top:120%; left:40%; width:50%;">
+		<c:if test="${pagination.prev}">
 
-			</c:if>
+			<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
+
+		</c:if>
 
 
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
 
-				<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')"> ${idx} </a></li>
+			<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')"> ${idx} </a></li>
 
-			</c:forEach>
+		</c:forEach>
 
 				
-			<c:if test="${pagination.next}">
+		<c:if test="${pagination.next}">
 
-				<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+			<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
 
-			</c:if>
+		</c:if>
 
-		</ul>
+	</ul>
+
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>  
 </body>
 </html>

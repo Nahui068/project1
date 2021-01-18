@@ -118,7 +118,13 @@ public class memberServiceImpl implements memberService{
 		
 	}
 	
-	
+	// 회원 아이디 중복체크 
+	@Override
+	public int idChk(MemberBean member) throws Exception {
+		
+		return md.idChk(member);
+		
+	}
 	
 	
 	

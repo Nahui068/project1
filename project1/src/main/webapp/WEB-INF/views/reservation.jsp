@@ -97,6 +97,7 @@
 			  firstDay: 1,
 			  selectable: true,
 			  navLinks:true,
+			  minTime:"08:00:00",  
 		      select: function(info) {
 				var start_time = info.startStr.substring(11,16); // 시작 시간
 				var end_time = info.endStr.substring(11,16); // 끝 시간

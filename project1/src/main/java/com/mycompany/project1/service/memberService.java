@@ -35,4 +35,6 @@ public interface memberService {
 	// 회원 수
 	public int memberCount() throws Exception;
 	
+	// 아이디 중복 체크
+	public int idChk(MemberBean member) throws Exception;
 }

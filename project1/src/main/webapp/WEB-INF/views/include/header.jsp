@@ -18,7 +18,7 @@
 <body>
 	<div class="jumbotron text-center mb-0"> 
 		<a href="/project1/board_select"><h1>Homepage</h1></a>
-		<p>자산관리 시스템</p> 
+		<p>예약시스템</p> 
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/project1/board_select">AWESOME</a>

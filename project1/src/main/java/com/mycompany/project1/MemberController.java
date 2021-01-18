@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.project1.bean.MemberBean;
 import com.mycompany.project1.bean.Pagination;
@@ -130,8 +131,18 @@ public class MemberController {
 	// 회원등록
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
 	public void member_insert(MemberBean memberDTO,HttpServletResponse response) throws Exception {
-		service.member_insert(memberDTO, response);
-	}
-	
+		
+		int result = service.idChk(memberDTO);
+		if(result == 1) {
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+	        out.println("<script>alert('현재 ID는 존재합니다.'); history.go(-1);</script>");
+	        out.flush();
+		}else {
+			service.member_insert(memberDTO, response);
+		}
+		
+	}	
+
 	
 }

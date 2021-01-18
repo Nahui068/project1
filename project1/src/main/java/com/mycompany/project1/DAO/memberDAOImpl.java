@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.project1.bean.MemberBean;
 import com.mycompany.project1.bean.Pagination;
@@ -61,13 +63,12 @@ public class memberDAOImpl implements memberDAO{
 		return sqlSession.selectOne("member.memberCount");
 	}
 	
+	// 아이디 중복체크
+	@Override
+	public int idChk(MemberBean member) throws Exception {
+		return sqlSession.selectOne("member.idCheck",member);
+	}
 	
-	
 
-
-
-
-
-	
 }
 

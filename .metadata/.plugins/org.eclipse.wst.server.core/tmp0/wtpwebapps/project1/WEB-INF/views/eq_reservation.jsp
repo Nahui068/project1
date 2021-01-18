@@ -97,6 +97,7 @@
 			  firstDay: 1,
 			  selectable: true,
 			  navLinks:true,
+			  minTime:"08:00:00",
 			  select: function(info) {
 				  
 					var start_time = info.startStr.substring(11,16); // 시작 시간
@@ -189,11 +190,11 @@
 			}	
 		}
 		
-		function eqChange_modal(e){
+		function eqChangeModal(e){
 			var camera = ['소니 6500','소니 캠코더1','소니 캠코더2','고프로 히어로9','고프로 히어로7'];
 			var tripod = ['삼각대 4번','삼각대 5번','삼각대 6번','모노포드 7번'];
 			var mike = ['마이크1', '마이크2', '마이크3', '마이크4', '마이크5', '마이크6', '마이크7', '로드마이크1', '로드마이크2'];
-			var target = document.getElementsByName('eq2')[0];
+			var target = document.getElementsByName('eq2')[1];
 			
 			if(e.value == "카메라") var d = camera;
 			else if(e.value == "삼각대") var d = tripod;
@@ -286,7 +287,7 @@
 	</span>
 	
 	<span style="position:absolute; top:50%; left:58%;">	
-		<input type="submit" class="btn btn-info" value="조회">
+		<input type="submit" class="btn btn-info select" value="조회">
 	</span>
 </form>
 
@@ -295,21 +296,16 @@
 <img src="${url}" style=" width:25%; height:25%;">
 <figcaption>
 	<c:if test="${!empty eq2}">
-		${eq1} ${eq2}
+		${eq2}
 	</c:if>
 </figcaption>
 </figure>
 </c:if>
 
 
-<%-- <span style="position:absolute; top:60%; left:42%;">
-	<c:if test="${!empty eq2}">
-		<h3>${eq1} ${eq2}</h3>
-		
-	</c:if>
-</span> --%>
-
 <div id='calendar'></div>
+
+
 
 <!-- 예약 모달창 -->
 <div id="myModal" class="modal">
@@ -331,8 +327,8 @@
         	<tr>
 				<td style="text-align:center">장소</td>
 				<td>
-				<select class="form-control eq1" name ="eq1" id="exampleSelect1" onchange="eqChange_modal(this)">
-					<option> 예약구분</option>
+				<select class="form-control eq1" name ="eq1" id="exampleSelect1" onchange="eqChangeModal(this)">
+					<option>예약구분</option>
 					<option value="카메라" <c:if test="${eq1 eq '카메라'}"> selected </c:if>>카메라</option>
 					<option value="삼각대"<c:if test="${eq1 eq '삼각대'}"> selected </c:if>>삼각대</option>
 					<option value="마이크"<c:if test="${eq1 eq '마이크'}"> selected </c:if>>마이크</option>

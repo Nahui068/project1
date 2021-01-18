@@ -75,4 +75,6 @@ public class AdminDAOImpl implements AdminDAO{
 		sqlSession.delete("member.memberDelete",member);
 		
 	}
+
+
 }
