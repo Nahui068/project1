@@ -98,6 +98,7 @@
 			  selectable: true,
 			  navLinks:true,
 			  select: function(info) {
+				  
 					var start_time = info.startStr.substring(11,16); // 시작 시간
 					var end_time = info.endStr.substring(11,16); // 끝 시간
 					
@@ -120,9 +121,16 @@
 					});
 				    	$("#start_time").val(start_time);
 				    	$("#end_time").val(end_time);
-				    	  
 
+					var today = new Date();			
+						
+					var betweenDay = (s_date_obj.getTime()-today.getTime())/1000/60/60/24;
+					console.log(betweenDay);
+					
+					if(betweenDay>=-1 && betweenDay<=14){
 				    	modal.style.display = "block";
+					}
+					
 			        },
 			        events : dataset,
 			        eventClick:function(info){
@@ -282,7 +290,9 @@
 	</span>
 </form>
 
+<c:if test="${!empty url}">
 <img src="${url}" style="position:absolute; top:50%; right:24%; width:10%; height:20%;">
+</c:if>
 <span style="position:absolute; top:60%; left:42%;">
 	<c:if test="${!empty eq2}">
 		<h1>${eq1} ${eq2}</h1>
