@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,8 @@
       <li class="nav-item">
         <a class="nav-link" href="/project1/eq_reservation">장비예약</a>
       </li>
-      <c:if test="${sessionScope.id == 'admin'}">
+      <%-- <c:if test="${sessionScope.id == 'admin' || sessionScope.id == 'awesome1' || sessionScope.id == 'awesome2' || sessionScope.id == 'awesome3' || sessionScope.id == 'awesome4' || sessionScope.id == 'awesome5'}"> --%>
+	     <c:if test="${fn:contains(sessionScope.id,'awesome')}">
 	     <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href=# role="button" aria-haspopup="true" aria-expanded="false">관리자</a>
 	        <div class="dropdown-menu">

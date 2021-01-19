@@ -5,6 +5,7 @@ public class ImageBean {
 	private int num;
 	private String photo_name;
 	private String url;
+	private String place;
 	
 	public int getNum() {
 		return num;
@@ -23,6 +24,12 @@ public class ImageBean {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
 	}
 	
 	

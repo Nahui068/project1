@@ -1,0 +1,110 @@
+package com.mycompany.project1;
+
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.mycompany.project1.bean.EqReservationBean;
+import com.mycompany.project1.service.EqReservationService;
+
+@Controller
+public class EqReservationController {
+
+	@Inject
+	EqReservationService service;
+	
+	// 장비 예약 화면
+	@RequestMapping("/eq_reservation")
+	public String eq_reservation() {
+		
+		return "eq_reservation";
+	}
+	
+	// 장비 예약 현황 보기
+	@RequestMapping("/eq_show")
+	public String selectEqReservation(String eq1, String eq2, Model model) throws Exception{
+		
+		String url = service.selectImage(eq2); // 장비명과 일치하는 사진 url가져오기
+		String place = service.eqPlace(eq2);
+		List rlist = (List)service.selectEqReservation(eq1, eq2); // 장비에 따른 예약 현황 리스트 가져오기
+		
+		model.addAttribute("rlist",rlist);
+		model.addAttribute("eq1",eq1);
+		model.addAttribute("eq2",eq2);
+		model.addAttribute("url", url);
+		model.addAttribute("place", place);
+		
+		return "eq_reservation";
+		
+	}
+	
+	// 장비 예약
+	@RequestMapping("/eq_submit")
+	@ResponseBody
+	public void insertEqReservation(EqReservationBean eqReservation) throws Exception{
+
+		service.insertEqReservation(eqReservation);
+		
+	}
+	
+	// 장비 예약 수정
+	@RequestMapping("/eq_update")
+	public void updateEqReservation(EqReservationBean eqReservation,HttpSession session,HttpServletResponse response ) throws Exception{
+		
+		String session_id = (String)session.getAttribute("id");
+		String r_id = eqReservation.getId();
+		
+		if(session_id.equals(r_id)) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 수정
+			service.updateEqReservation(eqReservation,response);
+			
+		}else {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('수정할 권한이 없습니다.')");
+			out.println("window.location=history.back()");
+			out.println("</script>");
+		}
+		
+	}
+	
+	// 장비 예약 삭제
+	@RequestMapping("/eq_delete")
+	public void deleteEqReservation(EqReservationBean eqReservation, HttpServletResponse response, HttpSession session) throws Exception{
+		
+		String session_id = (String) session.getAttribute("id");
+		String r_id = eqReservation.getId();
+		
+		if(session_id.equals(r_id) || r_id.contains("awesome")) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 삭제
+			service.deleteEqReservation(eqReservation,response);
+		}else {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('삭제할 권한이 없습니다.')");
+			out.println("window.location=history.back()");
+			out.println("</script>");
+		}
+		
+	}
+	
+	//장비체크
+	/*
+	 * @RequestMapping("/eq_check")
+	 * 
+	 * @ResponseBody public String eqCheck() {
+	 * 
+	 * 
+	 * }
+	 */
+	
+	
+}

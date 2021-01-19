@@ -126,12 +126,16 @@
 			    	var today = new Date();			
 					
 					var betweenDay = (s_date_obj.getTime()-today.getTime())/1000/60/60/24;
-					console.log(betweenDay);
 
 					// 2주만 예약 가능
 					if(betweenDay>=-1 && betweenDay<=14){
 				    	modal.style.display = "block";
+				    	
+					}else{
+						alert("예약이 불가능합니다.");
 					}
+	
+					
 		        },
 		        events : dataset,
 		        eventClick:function(info){
@@ -268,6 +272,16 @@
 			width:60%;
 			height:80%;
 		}
+		.fc-mon a{color:#000;} /* 월요일 */
+		.fc-tue a{color:#000;} /* 화요일 */
+		.fc-wed a{color:#000;} /* 수요일 */
+		.fc-thu a{color:#000;} /* 목요일 */
+		.fc-fri a{color:#000;} /* 금요일 */
+		.fc-sat a{color:#0000FF; } /* 토요일 */  
+    	.fc-sun a{ color:#FF0000; }  /* 일요일 */   
+		
+		th.fc-day-header.fc-widget-header.fc-sat a{color:#0000FF; }
+		th.fc-day-header.fc-widget-header.fc-sun a{color:#FF0000; }
 
 	</style>
 </head>
@@ -298,9 +312,42 @@
 	</span>
 </form>
 
-<span style="position:absolute; top:58%; left:40%;">
+<c:if test="${room2 eq '1006호 A'}">
+	<figure style="position:absolute; top:55%; left:25%; z-index:-1;">
+		<img src="resources/image/A_camera.jpg" style="width:15%; height:15%;">
+		<figcaption>소니 A7 Mark3</figcaption>
+	</figure>
+	<figure style="position:absolute; top:45%; left:33%; z-index:-1;">
+		<img src="resources/image/A_sam.jpg" style=" width:15%; height:15%;">
+		<figcaption>삼각대1번</figcaption>
+	</figure>
+</c:if>
+    
+<c:if test="${room2 eq '1006호 B'}">
+	<figure style="position:absolute; top:55%; left:25%; z-index:-1;">
+		<img src="resources/image/B_camera.jpg" style="width:15%; height:15%;">
+		<figcaption>캐논 5D Mark4</figcaption>
+	</figure>
+	<figure style="position:absolute; top:45%; left:33%; z-index:-1;">
+		<img src="resources/image/B_sam.jpg" style=" width:15%; height:15%;">
+		<figcaption>삼각대2번</figcaption>
+	</figure>
+</c:if>
+
+<c:if test="${room2 eq '1707호 C'}">
+	<figure style="position:absolute; top:55%; left:25%; z-index:-1;">
+		<img src="resources/image/C_camera.jpg" style="width:15%; height:15%;">
+		<figcaption>캐논 90D</figcaption>
+	</figure>
+	<figure style="position:absolute; top:45%; left:33%; z-index:-1;">
+		<img src="resources/image/C_sam.jpg" style=" width:15%; height:15%;">
+		<figcaption>삼각대 3번</figcaption>
+	</figure>
+</c:if>
+
+<span style="position:absolute; top:58%; left:45%;">
 	<c:if test="${!empty room2}">
-		<h1>${room1} ${room2}</h1>
+		<h3>${room1} ${room2}</h3>
 	</c:if>
 </span>
 
@@ -365,15 +412,6 @@
 				<td style="text-align:center">색상</td>
 				<td>
 					<input type="color" name="color" id="color">
-					<!-- <select class="custom-select" name="color" id="color">
-						<select class="sc_color" name="sc_color" id="sc_color">
-						<option value="">색상
-						<option value="#FFEB5A" style="color:#FFEB5A;"> 노랑색</option>
-						<option value="#C45FDD" style="color:#C45FDD;"> 보라색</option>
-						<option value="#5AD18F" style="color:#5AD18F;"> 초록색</option>
-						<option value="#5CEEE6" style="color:#5CEEE6;"> 민트색</option>
-					</select>
-		 -->
 				</td>
 			</tr>
         </table>

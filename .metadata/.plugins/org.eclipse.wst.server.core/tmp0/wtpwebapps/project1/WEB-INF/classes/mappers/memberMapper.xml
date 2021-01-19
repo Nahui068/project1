@@ -10,7 +10,7 @@
 	
 	<!-- 회원등록 -->
 	<insert id = "memberInsert" parameterType="member">
-		insert into member values(#{id},#{name},#{pw})
+		insert into member values(#{name},#{id},#{pw})
 	</insert>
 	
 	<!-- 회원정보 가져오기 -->

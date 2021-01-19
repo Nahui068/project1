@@ -56,6 +56,13 @@ public class EqReservationDAOImpl implements EqReservationDAO{
 		return sqlSession.selectOne("eq_reservation.imageSelect", eq2);
 	}
 
+	// 장비 위치 가져오기
+	@Override
+	public String eqPlace(String eq2) throws Exception {
+		
+		return sqlSession.selectOne("eq_reservation.eqPlace",eq2);
+	}
+
 	
 
 }

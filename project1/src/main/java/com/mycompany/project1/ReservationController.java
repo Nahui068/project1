@@ -67,7 +67,7 @@ public class ReservationController {
 		String session_id = (String) session.getAttribute("id");
 		String r_id = reservation.getId();
 		
-		if(session_id.equals(r_id) || session_id.equals("admin")) {
+		if(session_id.equals(r_id) || session_id.contains("awesome")) {
 			service.reservation_delete(reservation, response);
 		}else {
 			response.setContentType("text/html;charset=utf-8");
@@ -86,7 +86,7 @@ public class ReservationController {
 		String session_id = (String) session.getAttribute("id");
 		String r_id = reservation.getId();
 		
-		if(session_id.equals(r_id)) {
+		if(session_id.equals(r_id) || session_id.contains("awesome")) {
 			service.reservation_update(reservation, response);
 		}else {
 			response.setContentType("text/html;charset=utf-8");

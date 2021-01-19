@@ -126,11 +126,13 @@
 			    	var today = new Date();			
 					
 					var betweenDay = (s_date_obj.getTime()-today.getTime())/1000/60/60/24;
-					console.log(betweenDay);
 
 					// 2주만 예약 가능
 					if(betweenDay>=-1 && betweenDay<=14){
 				    	modal.style.display = "block";
+				    	
+					}else{
+						alert("예약이 불가능합니다.");
 					}
 	
 					
@@ -312,11 +314,11 @@
 
 <c:if test="${room2 eq '1006호 A'}">
 	<figure style="position:absolute; top:55%; left:25%; z-index:-1;">
-		<img src="resources/image/B_camera.jpg" style="width:15%; height:15%;">
+		<img src="resources/image/A_camera.jpg" style="width:15%; height:15%;">
 		<figcaption>소니 A7 Mark3</figcaption>
 	</figure>
 	<figure style="position:absolute; top:45%; left:33%; z-index:-1;">
-		<img src="resources/image/B_sam.jpg" style=" width:15%; height:15%;">
+		<img src="resources/image/A_sam.jpg" style=" width:15%; height:15%;">
 		<figcaption>삼각대1번</figcaption>
 	</figure>
 </c:if>
@@ -410,15 +412,6 @@
 				<td style="text-align:center">색상</td>
 				<td>
 					<input type="color" name="color" id="color">
-					<!-- <select class="custom-select" name="color" id="color">
-						<select class="sc_color" name="sc_color" id="sc_color">
-						<option value="">색상
-						<option value="#FFEB5A" style="color:#FFEB5A;"> 노랑색</option>
-						<option value="#C45FDD" style="color:#C45FDD;"> 보라색</option>
-						<option value="#5AD18F" style="color:#5AD18F;"> 초록색</option>
-						<option value="#5CEEE6" style="color:#5CEEE6;"> 민트색</option>
-					</select>
-		 -->
 				</td>
 			</tr>
         </table>

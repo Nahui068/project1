@@ -1,5 +1,0 @@
-package AuthLoginInterceptor;
-
-public interface HandlerInterceptorAdapter {
-
-}

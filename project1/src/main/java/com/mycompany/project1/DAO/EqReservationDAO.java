@@ -21,5 +21,7 @@ public interface EqReservationDAO {
 	// 장비 사진 가져오기
 	public String selectImage(String eq2) throws Exception;
 	
+	// 장비 위치 가져오기
+	public String eqPlace(String eq2) throws Exception;
 	
 }

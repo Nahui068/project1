@@ -33,12 +33,14 @@ public class EqReservationController {
 	public String selectEqReservation(String eq1, String eq2, Model model) throws Exception{
 		
 		String url = service.selectImage(eq2); // 장비명과 일치하는 사진 url가져오기
+		String place = service.eqPlace(eq2);
 		List rlist = (List)service.selectEqReservation(eq1, eq2); // 장비에 따른 예약 현황 리스트 가져오기
 		
 		model.addAttribute("rlist",rlist);
 		model.addAttribute("eq1",eq1);
 		model.addAttribute("eq2",eq2);
 		model.addAttribute("url", url);
+		model.addAttribute("place", place);
 		
 		return "eq_reservation";
 		
@@ -60,7 +62,7 @@ public class EqReservationController {
 		String session_id = (String)session.getAttribute("id");
 		String r_id = eqReservation.getId();
 		
-		if(session_id.equals(r_id)) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 수정
+		if(session_id.equals(r_id) || session_id.contains("awesome")) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 수정
 			service.updateEqReservation(eqReservation,response);
 			
 		}else {
@@ -77,10 +79,11 @@ public class EqReservationController {
 	// 장비 예약 삭제
 	@RequestMapping("/eq_delete")
 	public void deleteEqReservation(EqReservationBean eqReservation, HttpServletResponse response, HttpSession session) throws Exception{
-		String session_id = (String) session.getAttribute("id");
-		String r_id = eqReservation.getId();
 		
-		if(session_id.equals(r_id) || session_id.equals("admin")) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 삭제
+		String session_id = (String) session.getAttribute("id"); // 세션 아이디
+		String r_id = eqReservation.getId(); // 예약한 아이디
+		
+		if(session_id.equals(r_id) || session_id.contains("awesome")) { // 현재 로그인 된 아이디랑 예약된 아이디가 일치할 경우 삭제 및 관리자일 경우 삭제
 			service.deleteEqReservation(eqReservation,response);
 		}else {
 			response.setContentType("text/html;charset=utf-8");
@@ -92,6 +95,7 @@ public class EqReservationController {
 		}
 		
 	}
+	
 	
 	
 }

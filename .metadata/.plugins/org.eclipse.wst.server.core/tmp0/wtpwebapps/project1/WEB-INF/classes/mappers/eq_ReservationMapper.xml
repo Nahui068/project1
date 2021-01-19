@@ -33,5 +33,5 @@
 	<select id="eqPlace" resultType="String" parameterType="String">
 		select place from photo where photo_name=#{photo_name}
 	</select>
-	
+
 </mapper>

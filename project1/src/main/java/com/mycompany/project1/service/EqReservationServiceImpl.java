@@ -65,6 +65,14 @@ public class EqReservationServiceImpl implements EqReservationService{
 		return rd.selectImage(eq2);
 		
 	}
+
+	// 장비 위치 가져오기
+	@Override
+	public String eqPlace(String eq2) throws Exception {
+		return rd.eqPlace(eq2);
+	}
+	
+	
 	
 	
 	

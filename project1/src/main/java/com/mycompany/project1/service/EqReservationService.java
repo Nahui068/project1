@@ -22,4 +22,7 @@ public interface EqReservationService{
 	
 	// 장비 이미지 가져오기
 	public String selectImage(String eq2) throws Exception;
+	
+	// 장비 위치 가져오기
+	public String eqPlace(String eq2) throws Exception;
 }
