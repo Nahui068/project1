@@ -19,8 +19,8 @@
 	</select>
 	
 	<!-- 해당 게시글 내용 보기 -->
-	<select id="boardContent" resultType="board" parameterType="hashmap">
-		select * from board where num=#{num} and title=#{title}
+	<select id="boardContent" resultType="board" parameterType="int">
+		select * from board where num=#{num}
 	</select>
 	
 	<!-- 조회수 증가 -->

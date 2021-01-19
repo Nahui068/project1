@@ -21,7 +21,7 @@ public interface BoardService {
 	public int board_count() throws Exception;
 	
 	// 내용 출력
-	public BoardBean board_content(int num, String title) throws Exception;
+	public BoardBean board_content(int num) throws Exception;
 	
 	// 조회수 증가
 	public void upReadcount(int num) throws Exception;

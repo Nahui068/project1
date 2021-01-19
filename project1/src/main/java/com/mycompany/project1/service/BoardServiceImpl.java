@@ -40,9 +40,9 @@ public class BoardServiceImpl implements BoardService{
 
 	// 내용 출력
 	@Override
-	public BoardBean board_content(int num, String title) throws Exception {
+	public BoardBean board_content(int num) throws Exception {
 		
-		BoardBean board_content = (BoardBean) bd.board_content(num,title);
+		BoardBean board_content = (BoardBean) bd.board_content(num);
 		
 		return board_content;
 	}

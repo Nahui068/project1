@@ -1181,3 +1181,7 @@
 192.168.0.1 - - [19/Jan/2021:16:37:03 +0900] "GET /project1/login_form HTTP/1.1" 200 1517
 192.168.0.1 - - [19/Jan/2021:16:37:08 +0900] "POST /project1/login HTTP/1.1" 200 53
 192.168.0.1 - - [19/Jan/2021:16:37:08 +0900] "GET /project1/board_select HTTP/1.1" 200 4830
+127.0.0.1 - - [19/Jan/2021:16:38:27 +0900] "GET / HTTP/1.1" 404 807
+192.168.0.1 - - [19/Jan/2021:16:38:30 +0900] "GET /project1/board_select HTTP/1.1" 200 4830
+192.168.0.1 - - [19/Jan/2021:16:38:37 +0900] "GET /project1/board_select HTTP/1.1" 200 4830
+192.168.0.1 - - [19/Jan/2021:16:38:37 +0900] "GET /project1/board_select HTTP/1.1" 200 4830

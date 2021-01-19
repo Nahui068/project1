@@ -14,7 +14,7 @@ public interface BoardDAO {
 	public int board_count() throws Exception;
 	
 	// 해당 게시글 가져오기
-	public BoardBean board_content(int num,String title) throws Exception;
+	public BoardBean board_content(int num) throws Exception;
 	
 	// 조회 수 증가
 	public int upReadcount(int num) throws Exception;

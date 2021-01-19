@@ -34,13 +34,9 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	// 데이터베이스 - 내용 출력
 	@Override
-	public BoardBean board_content(int num,String title) throws Exception {
-		
-		HashMap cmap = new HashMap();
-		cmap.put("num", num);
-		cmap.put("title",title);
-		
-		return (BoardBean)sqlSession.selectOne("board.boardContent",cmap);
+	public BoardBean board_content(int num) throws Exception {
+
+		return (BoardBean)sqlSession.selectOne("board.boardContent",num);
 	}
 
 	// 조회수 증가

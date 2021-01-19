@@ -46,9 +46,9 @@ public class BoardController {
 	
 	// 내용 출력
 	@RequestMapping(value="/content")
-	public String content(String title,int num, Model model) throws Exception {
+	public String content(int num, Model model) throws Exception {
 		
-		BoardBean board_content = service.board_content(num,title);
+		BoardBean board_content = service.board_content(num);
 		service.upReadcount(num); // 조회 수 증가
 		
 		model.addAttribute("content", board_content);
