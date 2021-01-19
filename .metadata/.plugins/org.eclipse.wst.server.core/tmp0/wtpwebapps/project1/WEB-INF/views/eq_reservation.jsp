@@ -126,14 +126,15 @@
 					var today = new Date();			
 						
 					var betweenDay = (s_date_obj.getTime()-today.getTime())/1000/60/60/24;
-					console.log(betweenDay);
 
 					// 2주만 예약 가능
 					if(betweenDay>=-1 && betweenDay<=14){
 				    	modal.style.display = "block";
+					}else{
+						alert("예약이 불가능합니다");
 					}
 					
-			        },
+			        },  
 			        events : dataset,
 			        eventClick:function(info){
 			        	//info.jsEvent.preventDefault();
@@ -264,6 +265,16 @@
 			width:60%;
 			height:80%;
 		}
+		.fc-mon a{color:#000;} /* 월요일 */
+		.fc-tue a{color:#000;} /* 화요일 */
+		.fc-wed a{color:#000;} /* 수요일 */
+		.fc-thu a{color:#000;} /* 목요일 */
+		.fc-fri a{color:#000;} /* 금요일 */
+		.fc-sat a{color:#0000FF; } /* 토요일 */  
+    	.fc-sun a{ color:#FF0000; }  /* 일요일 */   
+
+		th.fc-day-header.fc-widget-header.fc-sat a{color:#0000FF; }
+		th.fc-day-header.fc-widget-header.fc-sun a{color:#FF0000; }
 
 	</style>
 </head>
@@ -291,12 +302,17 @@
 	</span>
 </form>
 
+<!-- <label><input type="radio" name="check" value="lock">잠그기</label>
+<label><input type="radio" name="check" value="unlock">해제하기</label>
+<button type="button" name="button" id="check">submit</button> -->
+
+  
 <c:if test="${!empty url}">
 <figure style="position:absolute; top:45%; left:28%; z-index:-1;">
 <img src="${url}" style=" width:25%; height:25%;">
 <figcaption>
 	<c:if test="${!empty eq2}">
-		${eq2}
+		${eq2} (${place})
 	</c:if>
 </figcaption>
 </figure>
