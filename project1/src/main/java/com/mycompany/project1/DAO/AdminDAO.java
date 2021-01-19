@@ -18,13 +18,13 @@ public interface AdminDAO {
 	public int board_count() throws Exception;
 	
 	// 해당 게시글 가져오기
-	public BoardBean board_content(int num, String title) throws Exception;
+	public BoardBean board_content(int num) throws Exception;
 	
 	// 게시글 수정
 	public void board_update(BoardBean board) throws Exception;
 	
 	// 게시글 삭제
-	public void board_delete(int num, String title) throws Exception;
+	public void board_delete(int num) throws Exception;
 	
 	// 회원 삭제
 	public void member_delete(MemberBean member) throws Exception;

@@ -41,14 +41,11 @@ public class AdminDAOImpl implements AdminDAO{
 	
 	// 데이터베이스 - 내용 출력
 	@Override
-	public BoardBean board_content(int num,String title) throws Exception {
+	public BoardBean board_content(int num) throws Exception {
 		
-		HashMap cmap = new HashMap();
-		
-		cmap.put("num",num);
-		cmap.put("title",title);
+
 			
-		return (BoardBean)sqlSession.selectOne("board.boardContent",cmap);
+		return (BoardBean)sqlSession.selectOne("board.boardContent",num);
 	}
 
 	// 게시글 수정
@@ -60,13 +57,8 @@ public class AdminDAOImpl implements AdminDAO{
 
 	// 게시글 삭제
 	@Override
-	public void board_delete(int num, String title) throws Exception {
-		HashMap dmap = new HashMap();
-		
-		dmap.put("num", num);
-		dmap.put("title", title);
-		
-		sqlSession.selectOne("board.boardDelete",dmap);
+	public void board_delete(int num) throws Exception {
+		sqlSession.selectOne("board.boardDelete",num);
 	}
 
 	// 회원 삭제

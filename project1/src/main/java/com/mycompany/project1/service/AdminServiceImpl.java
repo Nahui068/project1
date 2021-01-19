@@ -51,9 +51,9 @@ public class AdminServiceImpl implements AdminService{
 
 	// 내용 출력
 	@Override
-	public BoardBean board_content(int num, String title) throws Exception {
+	public BoardBean board_content(int num) throws Exception {
 		
-		BoardBean board_content = (BoardBean) ad.board_content(num,title);
+		BoardBean board_content = (BoardBean) ad.board_content(num);
 		
 		return board_content;
 	}
@@ -74,9 +74,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	// 게시글 삭제
 	@Override
-	public void board_delete(int num, String title, HttpServletResponse response) throws Exception {
+	public void board_delete(int num, HttpServletResponse response) throws Exception {
 		
-		ad.board_delete(num, title);
+		ad.board_delete(num);
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");

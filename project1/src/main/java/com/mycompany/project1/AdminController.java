@@ -57,9 +57,9 @@ public class AdminController {
 	
 	// 내용 출력
 	@RequestMapping(value="/admin_content")
-	public String content(String title,int num, Model model) throws Exception {
+	public String content(int num, Model model) throws Exception {
 			
-		BoardBean board_content = service.board_content(num,title); // 게시글 번호와 제목이 일치하는 게시글 내용 가져오기
+		BoardBean board_content = service.board_content(num); // 게시글 번호와 제목이 일치하는 게시글 내용 가져오기
 			
 		model.addAttribute("content", board_content);
 			
@@ -68,9 +68,9 @@ public class AdminController {
 	
 	// 내용 수정Form
 	@RequestMapping(value="/admin_board_update")
-	public String boardUpdateForm(String title, int num, Model model) throws Exception{
+	public String boardUpdateForm(int num, Model model) throws Exception{
 		
-		BoardBean board_content = service.board_content(num, title); // 게시글 가져오기
+		BoardBean board_content = service.board_content(num); // 게시글 가져오기
 		
 		model.addAttribute("content",board_content);
 		
@@ -87,8 +87,8 @@ public class AdminController {
 	
 	// 게시글 삭제
 	@RequestMapping(value="/board_delete")
-	public void boardDelete(int num, String title,HttpServletResponse response) throws Exception{
-		service.board_delete(num, title, response);
+	public void boardDelete(int num,HttpServletResponse response) throws Exception{
+		service.board_delete(num,response);
 	}
 	
 	// 회원삭제

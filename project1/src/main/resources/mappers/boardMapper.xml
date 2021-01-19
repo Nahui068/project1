@@ -34,8 +34,8 @@
 	</update>
 	
 	<!-- 게시물 삭제 -->
-	<delete id="boardDelete" parameterType="hashmap">
-		delete from board where num=#{num} and title=#{title}
+	<delete id="boardDelete" parameterType="int">
+		delete from board where num=#{num}
 	</delete>
 	
 	

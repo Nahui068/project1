@@ -20,13 +20,13 @@ public interface AdminService {
 	public int board_count() throws Exception;
 	
 	// 내용 출력
-	public BoardBean board_content(int num, String title) throws Exception;
+	public BoardBean board_content(int num) throws Exception;
 	
 	// 게시글 수정
 	public void board_update(BoardBean board, HttpServletResponse response) throws Exception;
 	
 	// 게시글 삭제
-	public void board_delete(int num, String title, HttpServletResponse response) throws Exception;
+	public void board_delete(int num, HttpServletResponse response) throws Exception;
 	
 	// 회원 삭제
 	public void member_delete(MemberBean member,HttpServletResponse response) throws Exception;
